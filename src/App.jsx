@@ -26,7 +26,8 @@ export default function App() {
   const [selectedTrend, setSelectedTrend] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
-  const [downloadFormData, setDownloadFormData] = useState({ name: '', firma: '', email: '', dsgvo: false, formsubmitConsent: false, moreInfo: false });
+  const [modalType, setModalType] = useState('download'); // 'download' or 'appointment'
+  const [downloadFormData, setDownloadFormData] = useState({ name: '', firma: '', email: '', phone: '', dsgvo: false, formsubmitConsent: false, moreInfo: false });
   const [isDownloadSubmitting, setIsDownloadSubmitting] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
   const [showFloatingCTA, setShowFloatingCTA] = useState(false);
@@ -48,13 +49,17 @@ export default function App() {
     setIsDownloadSubmitting(true);
 
     const payload = {
+      Type: modalType === 'download' ? 'Whitepaper Download' : 'Experten-Termin Anfrage',
       Name: downloadFormData.name,
       Firma: downloadFormData.firma,
       Email: downloadFormData.email,
+      Telefon: downloadFormData.phone || 'Nicht angegeben',
       "Datenschutz akzeptiert": downloadFormData.dsgvo ? 'Ja' : 'Nein',
       "Drittanbieter (FormSubmit) akzeptiert": downloadFormData.formsubmitConsent ? 'Ja' : 'Nein',
       "Mehr Infos gewünscht (Opt-In)": downloadFormData.moreInfo ? 'Ja' : 'Nein',
-      "_subject": "Neuer Whitepaper Download: " + downloadFormData.name,
+      "_subject": modalType === 'download' 
+        ? "Neuer Whitepaper Download: " + downloadFormData.name 
+        : "Anfrage Experten-Termin: " + downloadFormData.name,
       "_template": "table"
     };
 
@@ -74,15 +79,17 @@ export default function App() {
     setIsDownloadSubmitting(false);
     setDownloadSuccess(true);
 
-    // Trigger download programmatically
-    setTimeout(() => {
-      const link = document.createElement('a');
-      link.href = '/Whitepaper_download.pdf';
-      link.download = 'Whitepaper_download.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }, 500);
+    // Trigger download programmatically ONLY for downloads
+    if (modalType === 'download') {
+      setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = '/Whitepaper_download.pdf';
+        link.download = 'Whitepaper_download.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, 500);
+    }
   };
 
   // Trend Data extracted from Whitepaper - all uniform formatting
@@ -738,13 +745,22 @@ export default function App() {
           <p className="text-2xl text-slate-600 font-medium max-w-2xl mx-auto">
             Die Zukunft beginnt jetzt. Nutzen Sie exklusive Insights, <br className="hidden lg:block" />um das Feld anzuführen.
           </p>
-          <button
-            onClick={() => setIsDownloadModalOpen(true)}
-            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-full font-bold text-lg hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all duration-300"
-          >
-            Studie herunterladen
-            <Download className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-5 bg-blue-600 text-white font-extrabold rounded-3xl hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-xl"
+            >
+              <Download className="w-6 h-6" />
+              Studie herunterladen
+            </button>
+            <button
+              onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); }}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-5 bg-white/60 backdrop-blur-xl border border-white text-slate-900 font-extrabold rounded-3xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all text-xl"
+            >
+              <Users className="w-6 h-6" />
+              Termin mit Experten
+            </button>
+          </div>
 
           <div className="pt-20 text-sm font-semibold flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500">
             <div>
@@ -760,12 +776,24 @@ export default function App() {
 
       {/* Floating CTA Overlay */}
       <div
-        className={`fixed bottom-8 right-8 z-40 transition-all duration-500 transform ${
+        className={`fixed bottom-8 right-8 z-40 flex flex-col items-end gap-3 transition-all duration-500 transform ${
           showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
         }`}
       >
+        {/* Appointment Bubble (Smaller) */}
         <button
-          onClick={() => setIsDownloadModalOpen(true)}
+          onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); }}
+          className="group relative flex items-center gap-3 px-5 py-3 bg-white/80 backdrop-blur-xl border border-white/80 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+        >
+          <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+            <Users className="w-4 h-4" />
+          </div>
+          <span className="text-sm font-bold text-slate-900">Expert-Talk</span>
+        </button>
+
+        {/* Primary Download Bubble */}
+        <button
+          onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
           className="group relative flex items-center gap-3 px-6 py-4 bg-white/60 backdrop-blur-2xl border border-white/80 rounded-full shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] hover:shadow-[0_12px_40px_0_rgba(31,38,135,0.25)] hover:-translate-y-1 transition-all duration-300"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-emerald-400/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -773,8 +801,8 @@ export default function App() {
             <Download className="w-5 h-5" />
           </div>
           <div className="flex flex-col items-start pr-2">
-            <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest leading-none mb-1">Kostenloses PDF</span>
-            <span className="text-sm font-extrabold text-slate-900 leading-none">Studie sichern</span>
+            <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest leading-none mb-1">Studie</span>
+            <span className="text-sm font-extrabold text-slate-900 leading-none">PDF sichern</span>
           </div>
         </button>
       </div>
@@ -822,17 +850,27 @@ export default function App() {
             ) : (
               <div className="p-8 md:p-10">
                 <div className="mb-8 pr-12">
-                  <h3 className="text-3xl font-extrabold text-slate-900 mb-2">Whitepaper sichern</h3>
-                  <p className="text-slate-600 text-sm">Erhalten Sie exklusiven Zugriff auf die komplette Studie. Einfach kurz eintragen und das PDF direkt herunterladen.</p>
+                  <h3 className="text-3xl font-extrabold text-slate-900 mb-2">
+                    {modalType === 'download' ? 'Studie sichern' : 'Experten-Termin'}
+                  </h3>
+                  <p className="text-slate-600 text-sm">
+                    {modalType === 'download'
+                      ? 'Erhalten Sie exklusiven Zugriff auf die komplette Studie als PDF.'
+                      : 'Lassen Sie sich praxisnah zeigen, welche Auswirkungen die Trends auf Ihr Geschäft haben.'}
+                  </p>
                 </div>
 
                 <form className="space-y-6" onSubmit={handleDownloadSubmit}>
+                  {/* FormSubmit Subject Configuration */}
+                  <input type="hidden" name="_subject" value={modalType === 'download' ? 'Neuer Whitepaper-Download: Retail Trends 2030' : 'Anfrage Experten-Termin: Retail Trends 2030'} />
+
                   {/* Inputs */}
                   <div className="space-y-4">
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-1">Name *</label>
                       <input
                         type="text"
+                        name="name"
                         required
                         value={downloadFormData.name}
                         onChange={(e) => setDownloadFormData({...downloadFormData, name: e.target.value})}
@@ -840,26 +878,45 @@ export default function App() {
                         placeholder="Ihr vollständiger Name"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-1">Firma *</label>
-                      <input
-                        type="text"
-                        required
-                        value={downloadFormData.firma}
-                        onChange={(e) => setDownloadFormData({...downloadFormData, firma: e.target.value})}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all"
-                        placeholder="Ihr Unternehmen"
-                      />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-bold text-slate-700 mb-1">Firma *</label>
+                        <input
+                          type="text"
+                          name="firma"
+                          required
+                          value={downloadFormData.firma}
+                          onChange={(e) => setDownloadFormData({...downloadFormData, firma: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all"
+                          placeholder="Unternehmensname"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-slate-700 mb-1">Email *</label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          value={downloadFormData.email}
+                          onChange={(e) => setDownloadFormData({...downloadFormData, email: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all"
+                          placeholder="ihre@email.de"
+                        />
+                      </div>
                     </div>
+                    {/* Telefonfeld (Pflicht bei Termin, Optional bei Download) */}
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-1">E-Mail *</label>
+                      <label className="block text-sm font-bold text-slate-700 mb-1">
+                        Telefon {modalType === 'appointment' ? '*' : '(Optional)'}
+                      </label>
                       <input
-                        type="email"
-                        required
-                        value={downloadFormData.email}
-                        onChange={(e) => setDownloadFormData({...downloadFormData, email: e.target.value})}
+                        type="tel"
+                        name="phone"
+                        required={modalType === 'appointment'}
+                        value={downloadFormData.phone}
+                        onChange={(e) => setDownloadFormData({...downloadFormData, phone: e.target.value})}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all"
-                        placeholder="Ihre berufliche E-Mail"
+                        placeholder="Für Rückfragen zum Termin / Rückruf"
                       />
                     </div>
                   </div>
@@ -921,8 +978,8 @@ export default function App() {
                       <span className="animate-pulse">Wird gesendet...</span>
                     ) : (
                       <>
-                        <Download className="w-5 h-5" />
-                        Jetzt Whitepaper herunterladen
+                        {modalType === 'download' ? <Download className="w-5 h-5" /> : <Users className="w-5 h-5" />}
+                        {modalType === 'download' ? 'Jetzt Whitepaper herunterladen' : 'Terminanfrage senden'}
                       </>
                     )}
                   </button>
