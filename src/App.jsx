@@ -330,8 +330,10 @@ export default function App() {
             </div>
             <span>Bavaria Consulting & Space and Lemon Innovations</span>
           </div>
-          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-            Die Neuerfindung der <br />
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-slate-900 leading-[1.1] flex flex-col items-center mx-auto w-fit">
+            <span className="w-full text-justify [text-align-last:justify] tracking-tight">
+              Die Neuerfindung der
+            </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-600 to-orange-500">
               Wertschöpfungskette
             </span>
