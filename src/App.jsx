@@ -313,57 +313,86 @@ export default function App() {
         }
       `}</style>
 
-      {/* Ambient Animated Background (Apple Style) */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-400/20 rounded-full blur-[120px] mix-blend-multiply" />
-        <div className="absolute top-[20%] right-[-10%] w-[40%] h-[60%] bg-emerald-400/20 rounded-full blur-[120px] mix-blend-multiply" />
-        <div className="absolute bottom-[-20%] left-[20%] w-[60%] h-[50%] bg-orange-400/20 rounded-full blur-[120px] mix-blend-multiply" />
-      </div>
+      {/* Hero Section - Futuristic Vision 2030 */}
+      <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 px-6 overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[120px] -z-10 animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-emerald-400/10 rounded-full blur-[120px] -z-10" />
 
-      {/* Navigation - Liquid Glass */}
-      <nav className="fixed top-0 w-full bg-white/40 backdrop-blur-xl z-50 border-b border-white/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src="/Visuals/logo-icon-bc.png" alt="BC Logo" className="h-8 w-auto object-contain mix-blend-darken grayscale opacity-90" />
-            <span className="font-bold text-xl tracking-tight text-slate-900">Retail Trends 2030</span>
-          </div>
-          <button
-            onClick={() => setIsDownloadModalOpen(true)}
-            className="hidden md:flex items-center gap-2 bg-white/60 backdrop-blur-md border border-white/80 text-slate-900 px-5 py-2.5 rounded-full font-semibold hover:bg-white hover:shadow-md transition-all"
-          >
-            <Download className="w-4 h-4" />
-            Download
-          </button>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="pt-48 pb-24 px-6 relative z-10 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-6 py-4 sm:py-3 rounded-[2rem] sm:rounded-full bg-white/50 backdrop-blur-xl border border-white/60 text-sm font-bold text-slate-800 shadow-lg shadow-blue-900/5 text-center">
-            <div className="flex items-center gap-4 px-5 py-2.5 bg-white/80 rounded-full border border-slate-100 shadow-sm">
-              <img src="/Visuals/logo-icon-bc.png" alt="Bavaria Consulting" className="h-5 w-auto object-contain mix-blend-darken grayscale opacity-90" />
-              <div className="w-px h-5 bg-slate-300"></div>
-              <img src="/Visuals/logo-icon-sli.png" alt="Space & Lemon" className="h-5 w-auto object-contain mix-blend-darken uppercase focus:outline-none" />
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 lg:gap-4 items-center">
+          
+          {/* Left Side: Headline & CTA (Glass Card) */}
+          <div className="col-span-12 lg:col-span-6 relative z-20 animate-slide-right">
+            <div className="glass-card p-8 md:p-12 rounded-[40px] border-white/40 shadow-2xl backdrop-blur-3xl lg:-mr-20 lg:translate-x-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/10 border border-blue-600/20 text-blue-700 text-xs font-bold uppercase tracking-widest mb-8">
+                <Bot className="w-4 h-4" />
+                Next Gen Retail Insight
+              </div>
+              
+              <h1 className="flex flex-col mb-8">
+                <span className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1] tracking-tighter text-justify block w-full whitespace-nowrap overflow-visible">
+                  Die Neuerfindung der
+                </span>
+                <span className="text-3xl md:text-5xl lg:text-6xl font-black text-blue-600 leading-[1.1] tracking-tighter block">
+                  Wertschöpfungskette
+                </span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-slate-600 font-medium mb-10 max-w-xl leading-relaxed">
+                KI, Robotics und neue Marktrealitäten transformieren den Lebensmittelhandel. <br className="hidden md:block" />
+                <span className="text-slate-900 font-bold">Sind Sie bereit für die Transformation 2030?</span>
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <button 
+                  onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
+                  className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-5 bg-blue-600 text-white font-extrabold rounded-2xl hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-lg shadow-lg group"
+                >
+                  <Download className="w-6 h-6 group-hover:animate-bounce" />
+                  Studie 2026 sichern
+                </button>
+                <button 
+                  onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); }}
+                  className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-5 bg-slate-900 text-white font-extrabold rounded-2xl hover:bg-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all text-lg shadow-lg"
+                >
+                  <Users className="w-6 h-6" />
+                  Experten-Talk
+                </button>
+              </div>
             </div>
-            <span>Bavaria Consulting & Space and Lemon Innovations</span>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-slate-900 leading-[1.1] flex flex-col items-center mx-auto w-fit">
-            <span className="w-full text-justify [text-align-last:justify] tracking-tight">
-              Die Neuerfindung der
-            </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-600 to-orange-500">
-              Wertschöpfungskette
-            </span>
-          </h1>
-          <div className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium space-y-6">
-            <p>
-              Der Lebensmittel-Einzelhandel (LEH) steht nicht vor einer bloßen Veränderung, sondern vor einer tektonischen Verschiebung seiner Grundfesten. Während die Branche jahrelang über operative Effizienz diskutierte, transformiert sich der Handel nun zum „Betriebssystem des Konsums“.
-            </p>
-            <p className="text-lg md:text-xl text-slate-500">
-              Gemeinsam werfen Bavaria Consulting und Space & Lemon einen ungeschönten Blick auf das Jahr 2030: Wo die Industrie Kontrolle verliert, wo der Handel zur Tech-Engine wird und welche Strategien heute über das Überleben von morgen entscheiden.
-            </p>
+
+          {/* Right Side: Futuristic Visual (Floating Island) */}
+          <div className="col-span-12 lg:col-span-6 relative z-10 perspective-1000 animate-fade-scale">
+            <div className="relative animate-float">
+              {/* Image Container with 3D Tilt */}
+              <div className="relative rounded-[48px] overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.25)] border-4 border-white/30 group">
+                <img 
+                  src="/Visuals/hero_vision.jpg" 
+                  alt="Food Future 2030 Vision"
+                  className="w-full h-auto object-cover scale-105 group-hover:scale-110 transition-transform duration-700"
+                />
+                {/* Visual Glare/Shine Effect Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-white/20 pointer-events-none" />
+              </div>
+              
+              {/* Decorative Labels or floating elements */}
+              <div className="absolute -bottom-6 -left-6 glass-card px-6 py-4 rounded-3xl animate-bounce-slow">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-emerald-500 rounded-full animate-ping" />
+                  <span className="text-sm font-extrabold text-slate-900 whitespace-nowrap">Future OS: Active</span>
+                </div>
+              </div>
+
+              <div className="absolute -top-6 -right-6 glass-card px-6 py-4 rounded-3xl">
+                <div className="flex items-center gap-3">
+                  <Cpu className="w-5 h-5 text-blue-600" />
+                  <span className="text-sm font-extrabold text-slate-900 whitespace-nowrap">Level 2030 Research</span>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -441,7 +470,7 @@ export default function App() {
       <section id="trends" className="py-24 px-6 max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
-            <h2 className="text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Die 10 Kerntrends</h2>
+            <h2 className="text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Die 10 Kerntrends 2030</h2>
             <p className="text-slate-600 max-w-2xl text-xl font-medium">
               Klicken Sie auf die Karten, um in die detaillierte Analyse einzutauchen.
             </p>
