@@ -29,6 +29,16 @@ export default function App() {
   const [downloadFormData, setDownloadFormData] = useState({ name: '', firma: '', email: '', dsgvo: false, formsubmitConsent: false, moreInfo: false });
   const [isDownloadSubmitting, setIsDownloadSubmitting] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
+  const [showFloatingCTA, setShowFloatingCTA] = useState(false);
+
+  // Scroll observer for floating CTA
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowFloatingCTA(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Computed Values
   const tabs = ["Alles", "Trends", "Technologie", "Konsumverhalten", "Nachhaltigkeit"];
@@ -747,6 +757,27 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Floating CTA Overlay */}
+      <div
+        className={`fixed bottom-8 right-8 z-40 transition-all duration-500 transform ${
+          showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+        }`}
+      >
+        <button
+          onClick={() => setIsDownloadModalOpen(true)}
+          className="group relative flex items-center gap-3 px-6 py-4 bg-white/60 backdrop-blur-2xl border border-white/80 rounded-full shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] hover:shadow-[0_12px_40px_0_rgba(31,38,135,0.25)] hover:-translate-y-1 transition-all duration-300"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-emerald-400/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+            <Download className="w-5 h-5" />
+          </div>
+          <div className="flex flex-col items-start pr-2">
+            <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest leading-none mb-1">Kostenloses PDF</span>
+            <span className="text-sm font-extrabold text-slate-900 leading-none">Studie sichern</span>
+          </div>
+        </button>
+      </div>
 
       {/* Download Modal - Lead Gen */}
       {isDownloadModalOpen && (
