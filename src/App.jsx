@@ -24,6 +24,7 @@ import {
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
   const [selectedTrend, setSelectedTrend] = useState(null);
+  const [selectedStudy, setSelectedStudy] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [modalType, setModalType] = useState('download'); // 'download' or 'appointment'
@@ -387,81 +388,49 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Historische Timeline (Horizontal) */}
+              {/* Historische Timeline (Horizontal) - Jetzt klickbar */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
-                <div className="flex flex-col items-center text-center p-8 bg-white/50 backdrop-blur-md rounded-[32px] border border-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-transform">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-extrabold shadow-lg shadow-blue-500/20 text-xl mb-6">
+                <button 
+                  onClick={() => setSelectedStudy('2015')}
+                  className="group flex flex-col items-center text-center p-8 bg-white/50 backdrop-blur-md rounded-[32px] border border-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                >
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-extrabold shadow-lg shadow-blue-500/20 text-xl mb-6 group-hover:scale-110 transition-transform">
                     2015
                   </div>
                   <h4 className="font-extrabold text-slate-900 text-lg mb-2">Ludwig-Maximilians-Universität München</h4>
-                  <p className="text-slate-600 text-sm font-medium">Erste Grundlagenstudie des Lebensmittelmarktes zur Identifikation langfristiger Trends.</p>
-                </div>
+                  <p className="text-slate-600 text-sm font-medium">Erste Grundlagenstudie zur Identifikation langfristiger Trends.</p>
+                  <div className="mt-4 flex items-center gap-2 text-blue-600 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                    Details ansehen <ChevronRight className="w-3 h-3" />
+                  </div>
+                </button>
                 
-                <div className="flex flex-col items-center text-center p-8 bg-white/50 backdrop-blur-md rounded-[32px] border border-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-transform">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white font-extrabold shadow-lg shadow-slate-900/20 text-xl mb-6">
+                <button 
+                  onClick={() => setSelectedStudy('2019')}
+                  className="group flex flex-col items-center text-center p-8 bg-white/50 backdrop-blur-md rounded-[32px] border border-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                >
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white font-extrabold shadow-lg shadow-slate-900/20 text-xl mb-6 group-hover:scale-110 transition-transform">
                     2019
                   </div>
                   <h4 className="font-extrabold text-slate-900 text-lg mb-2">Duale Hochschule Baden-Württemberg</h4>
-                  <p className="text-slate-600 text-sm font-medium">Vertiefungsstudie auf Basis von 32 qualitativen Interviews mit Vorständen aus LEH & Industrie.</p>
-                </div>
+                  <p className="text-slate-600 text-sm font-medium">Vertiefungsstudie auf Basis von 32 C-Level Experten-Interviews.</p>
+                  <div className="mt-4 flex items-center gap-2 text-slate-700 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                    Details ansehen <ChevronRight className="w-3 h-3" />
+                  </div>
+                </button>
 
-                <div className="flex flex-col items-center text-center p-8 bg-white/50 backdrop-blur-md rounded-[32px] border border-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-transform">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-extrabold shadow-lg shadow-orange-500/20 mb-6">
+                <button 
+                  onClick={() => setSelectedStudy('2026')}
+                  className="group flex flex-col items-center text-center p-8 bg-white/70 backdrop-blur-md rounded-[32px] border-2 border-orange-500/20 shadow-xl shadow-orange-500/5 hover:shadow-orange-500/10 hover:-translate-y-2 transition-all duration-300"
+                >
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-extrabold shadow-lg shadow-orange-500/20 mb-6 group-hover:scale-110 transition-transform">
                     <Target className="w-8 h-8" />
                   </div>
-                  <h4 className="font-extrabold text-slate-900 text-lg mb-2">Ziel der aktuellen Studie</h4>
-                  <p className="text-slate-600 text-sm font-medium">Praxisorientierte Einordnung technologischer Entwicklungen im Kontext der wirtschaftlichen Realität des Lebensmittelhandels.</p>
-                </div>
-              </div>
-
-              {/* Die 3 Säulen (Horizontal) */}
-              <div className="w-full pt-8">
-                <h3 className="text-3xl font-extrabold text-slate-900 text-center mb-10">Der Drei-Säulen-Ansatz</h3>
-                <div className="grid lg:grid-cols-3 gap-6 w-full">
-                  
-                  {/* Pillar 1 */}
-                  <div className="group relative bg-white/40 backdrop-blur-xl border border-white/80 p-8 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] hover:-translate-y-2 hover:bg-white/60 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-blue-400/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-blue-400/20 transition-colors duration-500" />
-                    <div className="w-14 h-14 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 mb-6 relative z-10">
-                      <Users className="w-7 h-7 text-blue-600" />
-                    </div>
-                    <div className="relative z-10 flex-1">
-                      <h4 className="text-xl font-extrabold text-slate-900 mb-3">1. Qualitatives Experten-Panel</h4>
-                      <p className="text-slate-600 leading-relaxed font-medium">
-                        Kompakte und tiefgreifende Branchenanalyse der neuen Dynamiken durch ein Panel aus führenden Innovationsexperten und Strategen.
-                      </p>
-                    </div>
+                  <h4 className="font-extrabold text-slate-900 text-lg mb-2 underline decoration-orange-500/30 decoration-2 underline-offset-4">Aktuelle Studie 2026</h4>
+                  <p className="text-slate-600 text-sm font-medium">Fokus: Praxisorientierte KI-Integration & neue Marktrealitäten im DACH-Raum.</p>
+                  <div className="mt-4 flex items-center gap-2 text-orange-600 text-xs font-bold uppercase tracking-wider opacity-100 group-hover:scale-105 transition-all">
+                    Drei-Säulen-Methodik <ChevronRight className="w-3 h-3" />
                   </div>
-
-                  {/* Pillar 2 */}
-                  <div className="group relative bg-white/40 backdrop-blur-xl border border-white/80 p-8 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] hover:-translate-y-2 hover:bg-white/60 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-purple-400/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-purple-400/20 transition-colors duration-500" />
-                    <div className="w-14 h-14 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 mb-6 relative z-10">
-                      <TrendingUp className="w-7 h-7 text-purple-600" />
-                    </div>
-                    <div className="relative z-10 flex-1">
-                      <h4 className="text-xl font-extrabold text-slate-900 mb-3">2. Trend-Synthese</h4>
-                      <p className="text-slate-600 leading-relaxed font-medium">
-                        Verknüpfung rasanter technologischer Innovationen (Künstliche Intelligenz, Automatisierung) mit langfristigem gesellschaftlichem Wandel im Konsumverhalten.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Pillar 3 */}
-                  <div className="group relative bg-white/40 backdrop-blur-xl border border-white/80 p-8 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] hover:-translate-y-2 hover:bg-white/60 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-orange-400/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-orange-400/20 transition-colors duration-500" />
-                    <div className="w-14 h-14 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 mb-6 relative z-10">
-                      <Globe className="w-7 h-7 text-orange-500" />
-                    </div>
-                    <div className="relative z-10 flex-1">
-                      <h4 className="text-xl font-extrabold text-slate-900 mb-3">3. Globale Marktprojektion</h4>
-                      <p className="text-slate-600 leading-relaxed font-medium">
-                        Scans internationaler Best-Practice-Modelle (der sogenannte "Asian Blueprint") und die methodische Ableitung ihrer Relevanz für den DACH-Raum.
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -746,12 +715,12 @@ export default function App() {
             Die Zukunft beginnt jetzt. Nutzen Sie exklusive Insights, <br className="hidden lg:block" />um das Feld anzuführen.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
+            <button 
               onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-5 bg-blue-600 text-white font-extrabold rounded-3xl hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-xl"
             >
               <Download className="w-6 h-6" />
-              Studie herunterladen
+              Studie 2026 sichern
             </button>
             <button
               onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); }}
@@ -986,6 +955,136 @@ export default function App() {
                 </form>
               </div>
             )}
+          </div>
+        </div>
+      )}
+      {/* Study Detail Modal */}
+      {selectedStudy && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6">
+          <div
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-xl"
+            onClick={() => setSelectedStudy(null)}
+          ></div>
+          <div className="relative w-full max-w-4xl bg-white/95 backdrop-blur-2xl rounded-[40px] shadow-2xl border border-white/50 overflow-hidden max-h-[90vh] flex flex-col">
+            {/* Modal Header */}
+            <div className="p-8 pb-4 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white font-extrabold shadow-lg ${
+                  selectedStudy === '2015' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
+                  selectedStudy === '2019' ? 'bg-gradient-to-br from-slate-700 to-slate-900' :
+                  'bg-gradient-to-br from-orange-400 to-orange-600'
+                }`}>
+                  {selectedStudy === '2026' ? <Target className="w-7 h-7" /> : selectedStudy}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-extrabold text-slate-900">
+                    {selectedStudy === '2015' && "Grundlagenstudie 2015"}
+                    {selectedStudy === '2019' && "Vertiefungsstudie 2019"}
+                    {selectedStudy === '2026' && "Wissenschaftliches Fundament 2026"}
+                  </h3>
+                  <p className="text-slate-500 font-medium">
+                    {selectedStudy === '2015' && "LMU München"}
+                    {selectedStudy === '2019' && "DHBW Ravensburg"}
+                    {selectedStudy === '2026' && "Methodik & Forschungsdesign"}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedStudy(null)}
+                className="p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-8 pt-4 overflow-y-auto">
+              {selectedStudy === '2026' ? (
+                <div className="space-y-10">
+                  <p className="text-lg text-slate-700 leading-relaxed font-semibold bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                    Das Ziel der aktuellen Studie ist eine praxisorientierte Einordnung technologischer Entwicklungen im Kontext der wirtschaftlichen Realität des Lebensmittelhandels. Wir nutzen einen Drei-Säulen-Ansatz:
+                  </p>
+                  
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {/* Pillar 1 */}
+                    <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm flex flex-col">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-6">
+                        <Users className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <h4 className="text-lg font-extrabold text-slate-900 mb-3">1. Qualitatives Experten-Panel</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        Kompakte und tiefgreifende Branchenanalyse der neuen Dynamiken durch ein Panel aus führenden Innovationsexperten und Strategen.
+                      </p>
+                    </div>
+
+                    {/* Pillar 2 */}
+                    <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm flex flex-col">
+                      <div className="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center mb-6">
+                        <TrendingUp className="w-6 h-6 text-purple-600" />
+                      </div>
+                      <h4 className="text-lg font-extrabold text-slate-900 mb-3">2. Trend-Synthese</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        Verknüpfung rasanter technologischer Innovationen (KI, Automatisierung) mit langfristigem gesellschaftlichem Wandel.
+                      </p>
+                    </div>
+
+                    {/* Pillar 3 */}
+                    <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm flex flex-col">
+                      <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-6">
+                        <Globe className="w-6 h-6 text-orange-500" />
+                      </div>
+                      <h4 className="text-lg font-extrabold text-slate-900 mb-3">3. Globale Marktprojektion</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        Scans internationaler Best-Practice-Modelle (Asian Blueprint) und die Ableitung ihrer Relevanz für den DACH-Raum.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 flex justify-center">
+                    <button 
+                      onClick={() => { setSelectedStudy(null); setModalType('download'); setIsDownloadModalOpen(true); }}
+                      className="flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all shadow-lg"
+                    >
+                      <Download className="w-5 h-5" />
+                      Komplette Studie 2026 jetzt downloaden
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div className="prose prose-slate max-w-none">
+                    <p className="text-lg text-slate-700 leading-relaxed italic border-l-4 border-slate-200 pl-6">
+                      "Den Wandel nicht nur beobachten, sondern methodisch greifbar machen – das war das Ziel bereits vor einer Dekade."
+                    </p>
+                    <p className="text-slate-600 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    </p>
+                    <p className="text-slate-600 leading-relaxed">
+                      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+                    </p>
+                  </div>
+                  <div className="pt-8 grid grid-cols-2 gap-4">
+                    <div className="p-6 bg-slate-50 rounded-2xl">
+                      <div className="text-2xl font-bold text-slate-900">32</div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Interviews</div>
+                    </div>
+                    <div className="p-6 bg-slate-50 rounded-2xl">
+                      <div className="text-2xl font-bold text-slate-900">100%</div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Fokus LEH</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <div className="p-8 border-t border-slate-100 bg-slate-50/50 flex justify-end">
+               <button 
+                onClick={() => setSelectedStudy(null)}
+                className="px-6 py-2 bg-white border border-slate-200 text-slate-600 font-bold rounded-xl hover:bg-slate-50 transition-colors"
+                >
+                Schließen
+              </button>
+            </div>
           </div>
         </div>
       )}
