@@ -330,17 +330,15 @@ export default function App() {
               </div>
               
               <h1 className="flex flex-col mb-8">
-                <span className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1] tracking-tighter text-justify block w-full whitespace-nowrap overflow-visible">
-                  Die Neuerfindung der
-                </span>
-                <span className="text-3xl md:text-5xl lg:text-6xl font-black text-blue-600 leading-[1.1] tracking-tighter block">
-                  Wertschöpfungskette
+                <span className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[0.9] tracking-tighter block uppercase">
+                  Beyond <br />
+                  <span className="text-blue-600">the Shelf</span>
                 </span>
               </h1>
               
-              <p className="text-lg md:text-xl text-slate-600 font-medium mb-10 max-w-xl leading-relaxed">
-                KI, Robotics und neue Marktrealitäten transformieren den Lebensmittelhandel. <br className="hidden md:block" />
-                <span className="text-slate-900 font-bold">Sind Sie bereit für die Transformation 2030?</span>
+              <p className="text-xl md:text-2xl text-slate-700 font-bold mb-10 max-w-xl leading-tight border-l-4 border-blue-600 pl-6">
+                Die neue Architektur der <br />
+                <span className="text-slate-500 font-medium">Lebensmittelindustrie 2030</span>
               </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4">
