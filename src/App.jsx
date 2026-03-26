@@ -63,7 +63,7 @@ export default function App() {
       "_subject": modalType === 'download' 
         ? "Neuer Whitepaper Download: " + downloadFormData.name 
         : "Anfrage Experten-Termin: " + downloadFormData.name,
-      "_template": "table"
+      "_template": settingsData.formTemplate
     };
 
     try {
@@ -86,8 +86,8 @@ export default function App() {
     if (modalType === 'download') {
       setTimeout(() => {
         const link = document.createElement('a');
-        link.href = '/Whitepaper_download.pdf';
-        link.download = 'Whitepaper_download.pdf';
+        link.href = settingsData.whitepaperPdf;
+        link.download = settingsData.whitepaperPdf.split('/').pop();
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -672,26 +672,17 @@ export default function App() {
           <p className="text-xl text-slate-600 font-medium mt-4">Die Köpfe und Daten hinter der Retail 2030 Studie.</p>
         </div>
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Partner 1 */}
-          <div className="bg-white/50 backdrop-blur-xl border border-white/60 p-10 rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300">
-            <div className="w-full h-16 flex items-center mb-8">
-              <img src="/Visuals/logo-bavaria.png" alt="Bavaria Consulting Group" className="h-full object-contain" />
+          {settingsData.partners.map((partner) => (
+            <div key={partner.id} className="bg-white/50 backdrop-blur-xl border border-white/60 p-10 rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300">
+              <div className="w-full h-16 flex items-center mb-8">
+                <img src={partner.logo} alt={partner.name} className="h-full object-contain" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">{partner.name}</h3>
+              <p className="text-lg text-slate-600 leading-relaxed font-medium">
+                {partner.description}
+              </p>
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">Bavaria Consulting Group</h3>
-            <p className="text-lg text-slate-600 leading-relaxed font-medium">
-              Die Bavaria Consulting Group ist eine renommierte Unternehmensberatung mit Sitz in München, die sich auf die Food-Industrie spezialisiert hat. Mit einem ganzheitlichen Ansatz aus Strategieberatung, Executive Search, M&A und Interim-Management begleitet sie Unternehmen dabei, profitables Wachstum zu erzielen, Innovationen zu treiben und strategische Ziele erfolgreich umzusetzen.
-            </p>
-          </div>
-          {/* Partner 2 */}
-          <div className="bg-white/50 backdrop-blur-xl border border-white/60 p-10 rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300">
-            <div className="w-full h-20 flex items-center justify-start mb-8">
-              <img src="/Visuals/logo-spaceandlemon.png" alt="Space & Lemon Innovations" className="h-[90%] object-contain" />
-            </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">Space & Lemon Innovations</h3>
-            <p className="text-lg text-slate-600 leading-relaxed font-medium">
-              Space & Lemon Innovations ist eine fokussierte Innovations- und Trendagentur mit Standorten in Hamburg und Berlin. Durch systematisches, datengetriebenes Trend-Scouting, die Analyse von Venture-Capital-Investitionen und globale Field-Research identifizieren sie frühzeitig technologische Verschiebungen und übersetzen diese in handfeste Produktentwicklungen.
-            </p>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -752,8 +743,8 @@ export default function App() {
               © {new Date().getFullYear()} Bavaria Consulting Group & Space and Lemon Innovations
             </div>
             <div className="flex gap-6">
-              <a href="https://www.bavaria-group.com/impressum.php" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">Impressum</a>
-              <a href="https://www.bavaria-group.com/datenschutz.php" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">Datenschutz</a>
+              <a href={settingsData.impressumUrl} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">Impressum</a>
+              <a href={settingsData.datenschutzUrl} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">Datenschutz</a>
             </div>
           </div>
         </div>
