@@ -45,6 +45,11 @@
   @apply bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)];
 }
 
+.text-outline-white {
+  -webkit-text-stroke: 1.5px white;
+  paint-order: stroke fill;
+}
+
 html, body {
   margin: 0;
   padding: 0;
