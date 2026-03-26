@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import authorsData from './data/authors.json';
+import settingsData from './data/settings.json';
 import {
   Cpu,
   Smartphone,
@@ -66,7 +67,7 @@ export default function App() {
     };
 
     try {
-      await fetch("https://formsubmit.co/ajax/abarth@bavaria-group.com", {
+      await fetch(settingsData.formSubmitEndpoint, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
