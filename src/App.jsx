@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import authorsData from './data/authors.json';
 import {
   Cpu,
   Smartphone,
@@ -698,17 +699,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Meet the Authors</h2>
-            <p className="text-xl text-slate-600 font-medium mt-4">Unsere Experten stehen für tiefe Industrieexpertise und radikale Methodik.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
-              { name: "Oliver Bank", role: "Experte" },
-              { name: "Andreas Barth", role: "Experte" },
-              { name: "Laurent Burdin", role: "Experte" },
-              { name: "Harald Melwisch", role: "Experte" },
-              { name: "Markus Neumann", role: "Experte" }
-            ].map((author, item) => (
+            {authorsData.map((author, item) => (
               <div key={item} className="bg-white/60 border border-white p-6 rounded-[32px] flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-sm mb-6 bg-slate-100 flex-shrink-0">
                   <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform duration-500">
@@ -718,8 +712,7 @@ export default function App() {
                 <h4 className="text-xl font-bold text-slate-900 mb-1">{author.name}</h4>
                 <div className="text-xs font-bold text-blue-600 mb-4 uppercase tracking-wider">{author.role}</div>
                 <p className="text-sm text-slate-600 font-medium leading-relaxed">
-                  Kurzer Platzhalter für die bald erscheinende Experten-Vita.
-                  Dieser Text kann dann flexibel im CMS angepasst werden.
+                  {author.bio}
                 </p>
               </div>
             ))}
