@@ -329,17 +329,12 @@ export default function App() {
                 Next Gen Retail Insight
               </div>
               
-              <h1 className="flex flex-col mb-8">
-                <span className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[0.9] tracking-tighter block uppercase">
-                  Beyond <br />
-                  <span className="text-blue-600">the Shelf</span>
+              <h1 className="flex flex-col mb-12">
+                <span className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tighter block uppercase">
+                  Die Transformation der <br />
+                  <span className="text-blue-600">Wertschöpfungskette</span>
                 </span>
               </h1>
-              
-              <p className="text-xl md:text-2xl text-slate-700 font-bold mb-10 max-w-xl leading-tight border-l-4 border-blue-600 pl-6">
-                Die neue Architektur der <br />
-                <span className="text-slate-500 font-medium">Lebensmittelindustrie 2030</span>
-              </p>
               
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <button 
