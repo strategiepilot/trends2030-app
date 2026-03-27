@@ -1085,63 +1085,68 @@ export default function App() {
                   </div>
                 </div>
               ) : (
-                <div className="space-y-10">
-                  <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
-                    <p className="text-lg text-slate-700 leading-relaxed font-semibold">
-                      {selectedStudy === '2015' 
-                        ? "Grundlagenstudie zur Identifikation langfristiger Transformationstreiber im deutschen Lebensmitteleinzelhandel (Kooperation mit LMU München)." 
-                        : "Qualitative Vertiefungsstudie zum Einfluss von Technologie und Konsumwandel auf den deutschen LEH (Kooperation mit DHBW Lörrach)."}
-                    </p>
+                <div className="space-y-12">
+                  {/* Methodology Card */}
+                  <div className="bg-slate-900 text-white p-8 rounded-[32px] shadow-xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                          <Target className="w-5 h-5 text-blue-400" />
+                        </div>
+                        <h4 className="text-xl font-bold">Methodik</h4>
+                      </div>
+                      <p className="text-slate-300 leading-relaxed font-medium mb-6">
+                        {selectedStudy === '2015' 
+                          ? "Kooperation mit der LMU München (Leitung Prof. Dr. Anton Meyer). Eine rigorose Desk-Research Analyse, bei der Trends nach Eintrittswahrscheinlichkeit und Branchenrelevanz bewertet wurden." 
+                          : "Strukturierte Expertenbefragung mit Vertretern aus Handel und Industrie. Visualisierung der Ergebnisse in einer Matrix zur Identifikation einflussreicher Zukunftstrends."}
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="px-5 py-3 bg-white/5 rounded-2xl border border-white/10 text-xs font-semibold text-slate-300">
+                          {selectedStudy === '2015' ? "Fokus: Süßwaren als Trend-Seismograph" : "Horizont: 5-10 Jahre Prognose"}
+                        </div>
+                        <div className="px-5 py-3 bg-white/5 rounded-2xl border border-white/10 text-xs font-semibold text-slate-300">
+                          {selectedStudy === '2015' ? "Zeitrahmen: 8-wöchiger Prozess (KW 36-43)" : "Fokus: Relevanz- & Impact-Matrix"}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-6">
-                        <Target className="w-6 h-6 text-blue-600" />
-                      </div>
-                      <h4 className="text-lg font-extrabold text-slate-900 mb-3">Methodik</h4>
-                      <p className="text-slate-600 text-sm leading-relaxed">
-                        {selectedStudy === '2015' 
-                          ? "Qualitative Analyse von Expertenhypothesen zur Identifikation struktureller Branchenveränderungen und langfristiger Trends." 
-                          : "32 qualitative Tiefen-Interviews mit Geschäftsführern, Vorständen und Top-Managern aus LEH und Lebensmittelindustrie."}
-                      </p>
-                    </div>
-
-                    <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm">
-                      <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6">
-                        <TrendingUp className="w-6 h-6 text-emerald-600" />
-                      </div>
-                      <h4 className="text-lg font-extrabold text-slate-900 mb-3">Key Results</h4>
-                      <ul className="text-slate-600 text-sm leading-relaxed list-disc list-inside space-y-1">
-                        {selectedStudy === '2015' ? (
-                          <>
-                            <li>Früherkennung der Relevanz von Big Data</li>
-                            <li>Bedeutung von Mobile Shopping identifiziert</li>
-                            <li>Identifikation von Effizienzpotenzialen</li>
-                          </>
-                        ) : (
-                          <>
-                            <li>KI & Big Data als Schlüsseltechnologien</li>
-                            <li>10%+ E-Commerce Anteil prognostiziert</li>
-                            <li>Zentrale Rolle der „Entplastifizierung“</li>
-                          </>
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="pt-8 grid grid-cols-2 gap-4">
-                    <div className="p-6 bg-slate-50 rounded-2xl">
-                      <div className="text-2xl font-bold text-slate-900">
-                        {selectedStudy === '2015' ? "15+" : "32"}
-                      </div>
-                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                        {selectedStudy === '2015' ? "Experten-Focus" : "Qualitative Interviews"}
-                      </div>
-                    </div>
-                    <div className="p-6 bg-slate-50 rounded-2xl">
-                      <div className="text-2xl font-bold text-slate-900">100%</div>
-                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Branchenfokus</div>
+                  {/* Findings Section */}
+                  <div>
+                    <h4 className="text-2xl font-black text-slate-900 mb-8 px-2">Die Top 3 Erkenntnisse</h4>
+                    <div className="grid grid-cols-1 gap-6">
+                      {selectedStudy === '2015' ? (
+                        <>
+                          <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm hover:shadow-md transition-shadow">
+                            <h5 className="text-lg font-extrabold text-blue-600 mb-2">1. Singularisierung & Fragmentierung</h5>
+                            <p className="text-slate-600 text-sm leading-relaxed">Ein Fünftel Einpersonenhaushalte erfordert neue Portionsgrößen & Convenience-Konzepte. Der Markt spaltet sich in Masse vs. Premium.</p>
+                          </div>
+                          <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm hover:shadow-md transition-shadow">
+                            <h5 className="text-lg font-extrabold text-blue-600 mb-2">2. Das „Gen-Z-Paradoxon“</h5>
+                            <p className="text-slate-600 text-sm leading-relaxed">Warnung vor Überdigitalisierung. Ein wachsender Teil der Gen-Z sucht bewusst analoge Rückzugsorte – reine Digital-Strategien könnten entfremden.</p>
+                          </div>
+                          <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm hover:shadow-md transition-shadow">
+                            <h5 className="text-lg font-extrabold text-blue-600 mb-2">3. Auflösung der Mahlzeitenstrukturen</h5>
+                            <p className="text-slate-600 text-sm leading-relaxed">„Infinite Food“: Starre Tagesstrukturen lösen sich zugunsten permanenten Snackings auf. Fokus auf „Healthy Convenience“ im To-Go Bereich.</p>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm hover:shadow-md transition-shadow">
+                            <h5 className="text-lg font-extrabold text-indigo-600 mb-2">1. Big Data & KI in der Kundenansprache</h5>
+                            <p className="text-slate-600 text-sm leading-relaxed">Präzise Cluster-Bildung & personalisierte Angebote. Während Online bereits stark ist, muss der stationäre Handel bei der Datengewinnung nachziehen.</p>
+                          </div>
+                          <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm hover:shadow-md transition-shadow">
+                            <h5 className="text-lg font-extrabold text-indigo-600 mb-2">2. „Entplastifizierung“</h5>
+                            <p className="text-slate-600 text-sm leading-relaxed">Massive Relevanz bei Verbrauchsverpackungen. Größte Hürde bleibt das Spannungsfeld zwischen Produktsicherheit (Schutz vor Ausschuss) & Ökologie.</p>
+                          </div>
+                          <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm hover:shadow-md transition-shadow">
+                            <h5 className="text-lg font-extrabold text-indigo-600 mb-2">3. Online-Anteil & Cross-Channel</h5>
+                            <p className="text-slate-600 text-sm leading-relaxed">Prognose 10% Online-Anteil getrieben durch Gen Y/Z. Click & Collect bleibt zentral für die Zeitersparnis ohne Bindung an feste Lieferfenster.</p>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
