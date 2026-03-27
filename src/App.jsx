@@ -63,7 +63,10 @@ export default function App() {
       "_subject": modalType === 'download' 
         ? "Neuer Whitepaper Download: " + downloadFormData.name 
         : "Anfrage Experten-Termin: " + downloadFormData.name,
-      "_template": settingsData.formTemplate
+      "_template": settingsData.formTemplate,
+      "_captcha": "false",
+      "_honey": "",
+      "_replyto": downloadFormData.email
     };
 
     try {
