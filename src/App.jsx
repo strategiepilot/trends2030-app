@@ -60,8 +60,8 @@ export default function App() {
       "Datenschutz akzeptiert": downloadFormData.dsgvo ? 'Ja' : 'Nein',
       "Drittanbieter (FormSubmit) akzeptiert": downloadFormData.formsubmitConsent ? 'Ja' : 'Nein',
       "Mehr Infos gewünscht (Opt-In)": downloadFormData.moreInfo ? 'Ja' : 'Nein',
-      "_subject": modalType === 'download' 
-        ? "Neuer Whitepaper Download: " + downloadFormData.name 
+      "_subject": modalType === 'download'
+        ? "Neuer Whitepaper Download: " + downloadFormData.name
         : "Anfrage Experten-Termin: " + downloadFormData.name,
       "_template": settingsData.formTemplate,
       "_captcha": "false",
@@ -325,7 +325,7 @@ export default function App() {
         <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-emerald-400/10 rounded-full blur-[120px] -z-10" />
 
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 lg:gap-4 items-center">
-          
+
           {/* Left Side: Headline & CTA (Glass Card) */}
           <div className="col-span-12 lg:col-span-6 relative z-20 animate-slide-right">
             <div className="glass-card p-8 md:p-12 rounded-[40px] border-white/40 shadow-2xl backdrop-blur-3xl lg:-mr-20 lg:translate-x-4">
@@ -333,23 +333,23 @@ export default function App() {
                 <Bot className="w-4 h-4" />
                 Next Gen Retail Insight
               </div>
-              
+
               <h1 className="flex flex-col mb-12">
                 <span className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tighter block uppercase">
                   Die Transformation der <br />
                   <span className="text-blue-600 text-outline-white">Wertschöpfungskette</span>
                 </span>
               </h1>
-              
+
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <button 
+                <button
                   onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
                   className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-5 bg-blue-600 text-white font-extrabold rounded-2xl hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-lg shadow-lg group"
                 >
                   <Download className="w-6 h-6 group-hover:animate-bounce" />
                   Studie 2026 sichern
                 </button>
-                <button 
+                <button
                   onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); }}
                   className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-5 bg-slate-900 text-white font-extrabold rounded-2xl hover:bg-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all text-lg shadow-lg"
                 >
@@ -365,15 +365,15 @@ export default function App() {
             <div className="relative animate-float">
               {/* Image Container with 3D Tilt */}
               <div className="relative rounded-[48px] overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.25)] border-4 border-white/30 group">
-                <img 
-                  src="/Visuals/hero_vision.jpg" 
+                <img
+                  src="/Visuals/hero_vision.jpg"
                   alt="Food Future 2030 Vision"
                   className="w-full h-auto object-cover scale-105 group-hover:scale-110 transition-transform duration-700"
                 />
                 {/* Visual Glare/Shine Effect Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-white/20 pointer-events-none" />
               </div>
-              
+
               {/* Decorative Labels or floating elements */}
               <div className="absolute -bottom-6 -left-6 glass-card px-6 py-4 rounded-3xl animate-bounce-slow">
                 <div className="flex items-center gap-3">
@@ -400,7 +400,7 @@ export default function App() {
           <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[40px] p-8 md:p-16 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]">
             {/* Single Column Redesign */}
             <div className="flex flex-col gap-16 items-center">
-              
+
               {/* Header */}
               <div className="text-center max-w-4xl">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-white text-sm font-bold text-slate-800 mb-6 shadow-sm">
@@ -417,7 +417,7 @@ export default function App() {
 
               {/* Historische Timeline (Horizontal) - Jetzt klickbar */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
-                <button 
+                <button
                   onClick={() => setSelectedStudy('2015')}
                   className="group flex flex-col items-center text-center p-8 bg-white/50 backdrop-blur-md rounded-[32px] border border-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
                 >
@@ -430,8 +430,8 @@ export default function App() {
                     Details ansehen <ChevronRight className="w-3 h-3" />
                   </div>
                 </button>
-                
-                <button 
+
+                <button
                   onClick={() => setSelectedStudy('2019')}
                   className="group flex flex-col items-center text-center p-8 bg-white/50 backdrop-blur-md rounded-[32px] border border-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
                 >
@@ -445,7 +445,7 @@ export default function App() {
                   </div>
                 </button>
 
-                <button 
+                <button
                   onClick={() => setSelectedStudy('2026')}
                   className="group flex flex-col items-center text-center p-8 bg-white/70 backdrop-blur-md rounded-[32px] border-2 border-orange-500/20 shadow-xl shadow-orange-500/5 hover:shadow-orange-500/10 hover:-translate-y-2 transition-all duration-300"
                 >
@@ -489,11 +489,10 @@ export default function App() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-3 rounded-full text-sm font-bold capitalize transition-all duration-300 ${
-                    activeTab === tab
+                  className={`px-6 py-3 rounded-full text-sm font-bold capitalize transition-all duration-300 ${activeTab === tab
                       ? `bg-white shadow-md scale-105 ${activeTabClass}`
                       : `${tabColorClass} hover:bg-white/50`
-                  }`}
+                    }`}
                 >
                   {tab === 'all' ? 'Alle Trends' : tab}
                 </button>
@@ -698,19 +697,18 @@ export default function App() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {authorsData.map((author, item) => (
-              <div 
-                key={item} 
+              <div
+                key={item}
                 className="bg-white/60 border border-white p-6 rounded-[32px] flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden min-h-[400px]"
               >
                 {/* Photo Container - Larger Ring */}
                 <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-lg bg-slate-50 flex-shrink-0 relative group-hover:scale-110 transition-transform duration-700 z-10">
                   {author.image ? (
-                    <img 
-                      src={author.image} 
-                      alt={author.name} 
-                      className={`w-full h-full object-cover grayscale-[0.05] contrast-[1.05] transition-all duration-1000 ${
-                        author.id === 'markus' ? 'brightness-[1.14] contrast-[1.12]' : ''
-                      }`}
+                    <img
+                      src={author.image}
+                      alt={author.name}
+                      className={`w-full h-full object-cover grayscale-[0.05] contrast-[1.05] transition-all duration-1000 ${author.id === 'markus' ? 'brightness-[1.14] contrast-[1.12]' : ''
+                        }`}
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-slate-400">
@@ -720,7 +718,7 @@ export default function App() {
                   {/* Subtle Harmony Overlay */}
                   <div className="absolute inset-0 bg-blue-900/5 mix-blend-multiply pointer-events-none" />
                 </div>
-                
+
                 <div className="mt-6 z-10 transition-opacity duration-300 group-hover:opacity-0">
                   <h4 className="text-xl font-extrabold text-slate-900 mb-1 tracking-tight">{author.name}</h4>
                   <div className="text-xs font-bold text-blue-600 uppercase tracking-widest">{author.role}</div>
@@ -729,7 +727,7 @@ export default function App() {
                 {/* Hover Bio Overlay - Elegant Liquid Glass Appearance */}
                 <div className="absolute inset-0 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-center items-start opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 z-20">
                   <h4 className="text-xl font-black text-slate-900 mb-4 tracking-tight">{author.name}</h4>
-                  <p 
+                  <p
                     className="text-[13px] text-slate-700 font-medium leading-relaxed text-left"
                     lang="de"
                     style={{ hyphens: 'auto', WebkitHyphens: 'auto' }}
@@ -753,7 +751,7 @@ export default function App() {
             Die Zukunft beginnt jetzt. Nutzen Sie exklusive Insights, <br className="hidden lg:block" />um das Feld anzuführen.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button 
+            <button
               onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-5 bg-blue-600 text-white font-extrabold rounded-3xl hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-xl"
             >
@@ -783,9 +781,8 @@ export default function App() {
 
       {/* Floating CTA Overlay */}
       <div
-        className={`fixed bottom-8 right-8 z-40 flex flex-col items-end gap-3 transition-all duration-500 transform ${
-          showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
-        }`}
+        className={`fixed bottom-8 right-8 z-40 flex flex-col items-end gap-3 transition-all duration-500 transform ${showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+          }`}
       >
         {/* Appointment Bubble (Smaller) */}
         <button
@@ -880,7 +877,7 @@ export default function App() {
                         name="name"
                         required
                         value={downloadFormData.name}
-                        onChange={(e) => setDownloadFormData({...downloadFormData, name: e.target.value})}
+                        onChange={(e) => setDownloadFormData({ ...downloadFormData, name: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all"
                         placeholder="Ihr vollständiger Name"
                       />
@@ -893,7 +890,7 @@ export default function App() {
                           name="firma"
                           required
                           value={downloadFormData.firma}
-                          onChange={(e) => setDownloadFormData({...downloadFormData, firma: e.target.value})}
+                          onChange={(e) => setDownloadFormData({ ...downloadFormData, firma: e.target.value })}
                           className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all"
                           placeholder="Unternehmensname"
                         />
@@ -905,7 +902,7 @@ export default function App() {
                           name="email"
                           required
                           value={downloadFormData.email}
-                          onChange={(e) => setDownloadFormData({...downloadFormData, email: e.target.value})}
+                          onChange={(e) => setDownloadFormData({ ...downloadFormData, email: e.target.value })}
                           className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all"
                           placeholder="ihre@email.de"
                         />
@@ -921,7 +918,7 @@ export default function App() {
                         name="phone"
                         required={modalType === 'appointment'}
                         value={downloadFormData.phone}
-                        onChange={(e) => setDownloadFormData({...downloadFormData, phone: e.target.value})}
+                        onChange={(e) => setDownloadFormData({ ...downloadFormData, phone: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all"
                         placeholder="Für Rückfragen zum Termin / Rückruf"
                       />
@@ -936,7 +933,7 @@ export default function App() {
                           type="checkbox"
                           required
                           checked={downloadFormData.dsgvo}
-                          onChange={(e) => setDownloadFormData({...downloadFormData, dsgvo: e.target.checked})}
+                          onChange={(e) => setDownloadFormData({ ...downloadFormData, dsgvo: e.target.checked })}
                           className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                         />
                       </div>
@@ -951,7 +948,7 @@ export default function App() {
                           type="checkbox"
                           required
                           checked={downloadFormData.formsubmitConsent}
-                          onChange={(e) => setDownloadFormData({...downloadFormData, formsubmitConsent: e.target.checked})}
+                          onChange={(e) => setDownloadFormData({ ...downloadFormData, formsubmitConsent: e.target.checked })}
                           className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                         />
                       </div>
@@ -965,7 +962,7 @@ export default function App() {
                         <input
                           type="checkbox"
                           checked={downloadFormData.moreInfo}
-                          onChange={(e) => setDownloadFormData({...downloadFormData, moreInfo: e.target.checked})}
+                          onChange={(e) => setDownloadFormData({ ...downloadFormData, moreInfo: e.target.checked })}
                           className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                         />
                       </div>
@@ -1007,11 +1004,10 @@ export default function App() {
             {/* Modal Header */}
             <div className="p-8 pb-4 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white font-extrabold shadow-lg ${
-                  selectedStudy === '2015' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
-                  selectedStudy === '2019' ? 'bg-gradient-to-br from-slate-700 to-slate-900' :
-                  'bg-gradient-to-br from-orange-400 to-orange-600'
-                }`}>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white font-extrabold shadow-lg ${selectedStudy === '2015' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
+                    selectedStudy === '2019' ? 'bg-gradient-to-br from-slate-700 to-slate-900' :
+                      'bg-gradient-to-br from-orange-400 to-orange-600'
+                  }`}>
                   {selectedStudy === '2026' ? <Target className="w-7 h-7" /> : selectedStudy}
                 </div>
                 <div>
@@ -1042,7 +1038,7 @@ export default function App() {
                   <p className="text-lg text-slate-700 leading-relaxed font-semibold bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
                     Das Ziel der aktuellen Studie ist eine praxisorientierte Einordnung technologischer Entwicklungen im Kontext der wirtschaftlichen Realität des Lebensmittelhandels. Wir nutzen einen Drei-Säulen-Ansatz:
                   </p>
-                  
+
                   <div className="grid md:grid-cols-3 gap-6">
                     {/* Pillar 1 */}
                     <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm flex flex-col">
@@ -1079,7 +1075,7 @@ export default function App() {
                   </div>
 
                   <div className="pt-6 flex justify-center">
-                    <button 
+                    <button
                       onClick={() => { setSelectedStudy(null); setModalType('download'); setIsDownloadModalOpen(true); }}
                       className="flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all shadow-lg"
                     >
@@ -1114,12 +1110,12 @@ export default function App() {
                 </div>
               )}
             </div>
-            
+
             <div className="p-8 border-t border-slate-100 bg-slate-50/50 flex justify-end">
-               <button 
+              <button
                 onClick={() => setSelectedStudy(null)}
                 className="px-6 py-2 bg-white border border-slate-200 text-slate-600 font-bold rounded-xl hover:bg-slate-50 transition-colors"
-                >
+              >
                 Schließen
               </button>
             </div>
