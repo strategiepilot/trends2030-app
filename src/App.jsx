@@ -693,15 +693,21 @@ export default function App() {
             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Meet the Authors</h2>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {authorsData.map((author, item) => (
-              <div key={item} className="bg-white/60 border border-white p-8 md:p-10 rounded-[40px] flex flex-col md:flex-row items-center md:items-start text-center md:text-left shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group gap-8 md:gap-10">
-                <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-lg bg-slate-50 flex-shrink-0 relative group-hover:ring-8 group-hover:ring-blue-100/50 transition-all duration-700">
+              <div 
+                key={item} 
+                className="bg-white/60 border border-white p-6 rounded-[32px] flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden min-h-[400px]"
+              >
+                {/* Photo Container - Larger Ring */}
+                <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-lg bg-slate-50 flex-shrink-0 relative group-hover:scale-110 transition-transform duration-700 z-10">
                   {author.image ? (
                     <img 
                       src={author.image} 
                       alt={author.name} 
-                      className="w-full h-full object-cover grayscale-[0.1] contrast-[1.05] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                      className={`w-full h-full object-cover grayscale-[0.05] contrast-[1.05] transition-all duration-1000 ${
+                        author.id === 'markus' ? 'brightness-[1.14] contrast-[1.12]' : ''
+                      }`}
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-slate-400">
@@ -712,12 +718,20 @@ export default function App() {
                   <div className="absolute inset-0 bg-blue-900/5 mix-blend-multiply pointer-events-none" />
                 </div>
                 
-                <div className="flex-1">
-                  <h4 className="text-2xl font-black text-slate-900 mb-1 tracking-tight">{author.name}</h4>
-                  <div className="text-sm font-bold text-blue-600 mb-6 uppercase tracking-widest">{author.role}</div>
-                  <p className="text-base text-slate-700 font-medium leading-relaxed">
+                <div className="mt-6 z-10 transition-opacity duration-300 group-hover:opacity-0">
+                  <h4 className="text-xl font-extrabold text-slate-900 mb-1 tracking-tight">{author.name}</h4>
+                  <div className="text-xs font-bold text-blue-600 uppercase tracking-widest">{author.role}</div>
+                </div>
+
+                {/* Hover Bio Overlay - Elegant Liquid Glass Appearance */}
+                <div className="absolute inset-0 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-center items-start opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 z-20">
+                  <div className="w-8 h-1 bg-blue-600 rounded-full mb-4" />
+                  <h4 className="text-xl font-black text-slate-900 mb-1 tracking-tight">{author.name}</h4>
+                  <div className="text-[10px] font-bold text-blue-600 mb-6 uppercase tracking-widest">{author.role}</div>
+                  <p className="text-[13px] text-slate-700 font-medium leading-relaxed text-left">
                     {author.bio}
                   </p>
+                  <div className="mt-6 text-[10px] font-black text-slate-400 uppercase tracking-tighter">Herausgeber Expertise</div>
                 </div>
               </div>
             ))}
