@@ -1087,25 +1087,25 @@ export default function App() {
               ) : (
                 <div className="space-y-12">
                   {/* Methodology Card */}
-                  <div className="bg-slate-900 text-white p-8 rounded-[32px] shadow-xl relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                  <div className="bg-gradient-to-br from-blue-50/80 to-white/50 backdrop-blur-md p-8 rounded-[32px] shadow-sm border border-blue-100 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
                     <div className="relative z-10">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                          <Target className="w-5 h-5 text-blue-400" />
+                        <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                          <Target className="w-5 h-5 text-blue-600" />
                         </div>
-                        <h4 className="text-xl font-bold">Methodik</h4>
+                        <h4 className="text-xl font-extrabold text-slate-900">Methodik</h4>
                       </div>
-                      <p className="text-slate-300 leading-relaxed font-medium mb-6">
+                      <p className="text-slate-600 leading-relaxed font-medium mb-6">
                         {selectedStudy === '2015' 
                           ? "Kooperation mit der LMU München (Leitung Prof. Dr. Anton Meyer). Eine rigorose Desk-Research Analyse, bei der Trends nach Eintrittswahrscheinlichkeit und Branchenrelevanz bewertet wurden." 
                           : "Strukturierte Expertenbefragung mit Vertretern aus Handel und Industrie. Visualisierung der Ergebnisse in einer Matrix zur Identifikation einflussreicher Zukunftstrends."}
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="px-5 py-3 bg-white/5 rounded-2xl border border-white/10 text-xs font-semibold text-slate-300">
+                        <div className="px-5 py-3 bg-white/80 rounded-2xl border border-blue-100/50 text-xs font-bold text-blue-700">
                           {selectedStudy === '2015' ? "Fokus: Süßwaren als Trend-Seismograph" : "Horizont: 5-10 Jahre Prognose"}
                         </div>
-                        <div className="px-5 py-3 bg-white/5 rounded-2xl border border-white/10 text-xs font-semibold text-slate-300">
+                        <div className="px-5 py-3 bg-white/80 rounded-2xl border border-blue-100/50 text-xs font-bold text-blue-700">
                           {selectedStudy === '2015' ? "Zeitrahmen: 8-wöchiger Prozess (KW 36-43)" : "Fokus: Relevanz- & Impact-Matrix"}
                         </div>
                       </div>
