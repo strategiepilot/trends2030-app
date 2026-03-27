@@ -725,7 +725,6 @@ export default function App() {
 
                 {/* Hover Bio Overlay - Elegant Liquid Glass Appearance */}
                 <div className="absolute inset-0 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-center items-start opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 z-20">
-                  <div className="w-8 h-1 bg-blue-600 rounded-full mb-4" />
                   <h4 className="text-xl font-black text-slate-900 mb-4 tracking-tight">{author.name}</h4>
                   <p 
                     className="text-[13px] text-slate-700 font-medium leading-relaxed text-left"
