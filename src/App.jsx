@@ -1085,26 +1085,63 @@ export default function App() {
                   </div>
                 </div>
               ) : (
-                <div className="space-y-6">
-                  <div className="prose prose-slate max-w-none">
-                    <p className="text-lg text-slate-700 leading-relaxed italic border-l-4 border-slate-200 pl-6">
-                      "Den Wandel nicht nur beobachten, sondern methodisch greifbar machen – das war das Ziel bereits vor einer Dekade."
-                    </p>
-                    <p className="text-slate-600 leading-relaxed">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    </p>
-                    <p className="text-slate-600 leading-relaxed">
-                      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+                <div className="space-y-10">
+                  <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                    <p className="text-lg text-slate-700 leading-relaxed font-semibold">
+                      {selectedStudy === '2015' 
+                        ? "Grundlagenstudie zur Identifikation langfristiger Transformationstreiber im deutschen Lebensmitteleinzelhandel (Kooperation mit LMU München)." 
+                        : "Qualitative Vertiefungsstudie zum Einfluss von Technologie und Konsumwandel auf den deutschen LEH (Kooperation mit DHBW Lörrach)."}
                     </p>
                   </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-6">
+                        <Target className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <h4 className="text-lg font-extrabold text-slate-900 mb-3">Methodik</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        {selectedStudy === '2015' 
+                          ? "Qualitative Analyse von Expertenhypothesen zur Identifikation struktureller Branchenveränderungen und langfristiger Trends." 
+                          : "32 qualitative Tiefen-Interviews mit Geschäftsführern, Vorständen und Top-Managern aus LEH und Lebensmittelindustrie."}
+                      </p>
+                    </div>
+
+                    <div className="bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm">
+                      <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6">
+                        <TrendingUp className="w-6 h-6 text-emerald-600" />
+                      </div>
+                      <h4 className="text-lg font-extrabold text-slate-900 mb-3">Key Results</h4>
+                      <ul className="text-slate-600 text-sm leading-relaxed list-disc list-inside space-y-1">
+                        {selectedStudy === '2015' ? (
+                          <>
+                            <li>Früherkennung der Relevanz von Big Data</li>
+                            <li>Bedeutung von Mobile Shopping identifiziert</li>
+                            <li>Identifikation von Effizienzpotenzialen</li>
+                          </>
+                        ) : (
+                          <>
+                            <li>KI & Big Data als Schlüsseltechnologien</li>
+                            <li>10%+ E-Commerce Anteil prognostiziert</li>
+                            <li>Zentrale Rolle der „Entplastifizierung“</li>
+                          </>
+                        )}
+                      </ul>
+                    </div>
+                  </div>
+
                   <div className="pt-8 grid grid-cols-2 gap-4">
                     <div className="p-6 bg-slate-50 rounded-2xl">
-                      <div className="text-2xl font-bold text-slate-900">32</div>
-                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Interviews</div>
+                      <div className="text-2xl font-bold text-slate-900">
+                        {selectedStudy === '2015' ? "15+" : "32"}
+                      </div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                        {selectedStudy === '2015' ? "Experten-Focus" : "Qualitative Interviews"}
+                      </div>
                     </div>
                     <div className="p-6 bg-slate-50 rounded-2xl">
                       <div className="text-2xl font-bold text-slate-900">100%</div>
-                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Fokus LEH</div>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Branchenfokus</div>
                     </div>
                   </div>
                 </div>
