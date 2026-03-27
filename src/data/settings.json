@@ -1,8 +1,8 @@
 {
-  "contactEmail": "abarth@bavaria-group.com",
-  "formSubmitEndpoint": "https://formsubmit.co/ajax/abarth@bavaria-group.com",
+  "contactEmail": "barth.andreas@web.de",
+  "formSubmitEndpoint": "https://formsubmit.co/ajax/barth.andreas@web.de",
   "formTemplate": "table",
-  "whitepaperPdf": "/Whitepaper_download.pdf",
+  "whitepaperPdf": "/Retailtrends2030_WhitepaperDownload.pdf",
   "impressumUrl": "https://www.bavaria-group.com/impressum.php",
   "datenschutzUrl": "https://www.bavaria-group.com/datenschutz.php",
   "partners": [
