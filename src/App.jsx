@@ -239,14 +239,23 @@ export default function App() {
                 </div>
 
                 {/* Hover Bio Overlay - Elegant Liquid Glass Appearance */}
-                <div className="absolute inset-0 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-center items-start opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 z-20">
-                  <div className="w-8 h-1 bg-blue-600 rounded-full mb-4" />
-                  <h4 className="text-xl font-black text-slate-900 mb-1 tracking-tight">{author.name}</h4>
-                  <div className="text-[10px] font-bold text-blue-600 mb-6 uppercase tracking-widest">{author.role}</div>
-                  <p className="text-[13px] text-slate-700 font-medium leading-relaxed text-left">
-                    {author.bio}
-                  </p>
-                  <div className="mt-6 text-[10px] font-black text-slate-400 uppercase tracking-tighter">Herausgeber Expertise</div>
+                <div className="absolute inset-0 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-start items-start opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 z-20 pt-12">
+                  <div className="w-8 h-1 bg-blue-600 rounded-full mb-4 flex-shrink-0" />
+                  <h4 className="text-xl font-black text-slate-900 mb-1 tracking-tight flex-shrink-0">{author.name}</h4>
+                  <div className="text-[10px] font-bold text-blue-600 mb-6 uppercase tracking-widest flex-shrink-0">{author.role}</div>
+                  
+                  {/* Scrollable Bio with German Hyphenation */}
+                  <div className="flex-grow overflow-y-auto pr-2 custom-scrollbar">
+                    <p 
+                      className="text-[13px] text-slate-700 font-medium leading-relaxed text-left"
+                      lang="de"
+                      style={{ hyphens: 'auto', WebkitHyphens: 'auto' }}
+                    >
+                      {author.bio}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-6 text-[10px] font-black text-slate-400 uppercase tracking-tighter flex-shrink-0">Herausgeber Expertise</div>
                 </div>
               </div>
             ))}
