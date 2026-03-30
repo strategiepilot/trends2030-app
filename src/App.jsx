@@ -258,11 +258,27 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Floating CTA */}
-      <div className={`fixed bottom-8 right-8 z-[90] transition-all duration-500 transform ${showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
+      {/* Floating CTA Overlay */}
+      <div
+        className={`fixed bottom-8 right-8 z-[90] flex flex-col items-end gap-3 transition-all duration-500 transform ${
+          showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+        }`}
+      >
+        {/* Appointment Bubble (Smaller) */}
+        <button
+          onClick={() => { setModalType('appointment'); setDownloadError(null); setIsDownloadModalOpen(true); }}
+          className="group relative flex items-center gap-3 px-5 py-3 bg-white/80 backdrop-blur-xl border border-white/80 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+        >
+          <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+            <Users className="w-4 h-4" />
+          </div>
+          <span className="text-sm font-bold text-slate-900">Expert-Talk</span>
+        </button>
+
+        {/* Download Bubble */}
         <button
           onClick={() => { setModalType('download'); setDownloadError(null); setIsDownloadModalOpen(true); }}
-          className="group relative flex items-center gap-3 px-6 py-4 bg-white/60 backdrop-blur-2xl border border-white/80 rounded-full shadow-2xl hover:shadow-blue-500/20 transition-all"
+          className="group relative flex items-center gap-3 px-6 py-4 bg-white/60 backdrop-blur-2xl border border-white/80 rounded-full shadow-2xl hover:shadow-blue-500/20 transition-all hover:-translate-y-1"
         >
           <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg">
             <Download className="w-5 h-5" />
