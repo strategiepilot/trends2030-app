@@ -49,13 +49,18 @@ const ContextSection = ({ onStudyClick }) => {
 
               <button
                 onClick={() => onStudyClick('2026')}
-                className="group flex flex-col items-center text-center p-8 bg-blue-600/5 backdrop-blur-md rounded-[32px] border border-blue-200/50 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                className="group flex flex-col items-center text-center p-8 bg-orange-500/5 backdrop-blur-md rounded-[32px] border border-orange-200/50 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
               >
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-extrabold shadow-lg shadow-blue-600/20 text-xl mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-lg shadow-orange-500/20 mb-6 group-hover:scale-110 transition-transform">
                   <Target className="w-8 h-8" />
                 </div>
-                <h4 className="font-extrabold text-blue-700 mb-2">Trend Report 2026</h4>
-                <p className="text-sm text-blue-600/60 font-black uppercase tracking-widest">Active Insight</p>
+                <h4 className="text-xl font-black text-slate-900 mb-4 pb-1 border-b-2 border-orange-100">Aktuelle Studie 2026</h4>
+                <p className="text-sm text-slate-600 font-bold mb-6 leading-relaxed">
+                  Fokus: Praxisorientierte KI-Integration & neue Marktrealitäten im DACH-Raum.
+                </p>
+                <span className="text-[10px] font-black text-orange-600 uppercase tracking-widest flex items-center gap-2">
+                  Drei-Säulen-Methodik <span className="text-xs">›</span>
+                </span>
               </button>
             </div>
           </div>

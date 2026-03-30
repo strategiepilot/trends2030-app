@@ -36,6 +36,7 @@ export default function App() {
   });
   const [isDownloadSubmitting, setIsDownloadSubmitting] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
+  const [downloadError, setDownloadError] = useState(null);
   const [showFloatingCTA, setShowFloatingCTA] = useState(false);
 
   // Scroll observer for floating CTA
@@ -84,26 +85,35 @@ export default function App() {
     };
 
     try {
-      await fetch(settingsData.formSubmitEndpoint, {
+      const response = await fetch(settingsData.formSubmitEndpoint, {
         method: "POST",
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       });
-      setDownloadSuccess(true);
-      
-      if (modalType === 'download') {
-        setTimeout(() => {
-          const link = document.createElement('a');
-          link.href = settingsData.whitepaperPdf;
-          link.download = settingsData.whitepaperPdf.split('/').pop();
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }, 500);
+
+      const result = await response.json();
+
+      if (response.ok && result.success === "true" || result.success === true) {
+        setDownloadSuccess(true);
+        
+        if (modalType === 'download') {
+          setTimeout(() => {
+            const link = document.createElement('a');
+            link.href = settingsData.whitepaperPdf;
+            link.download = settingsData.whitepaperPdf.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }, 500);
+        }
+      } else {
+        const errorMsg = result.message || "Es gab ein Problem beim Senden. Bitte versuchen Sie es später erneut.";
+        console.error("FormSubmit Error:", result);
+        setDownloadError(errorMsg);
       }
     } catch (error) {
       console.error("Form transmission issue:", error);
-      alert("Es gab ein Problem beim Senden. Bitte versuchen Sie es später erneut.");
+      setDownloadError("Verbindungsproblem. Bitte prüfen Sie Ihre Internetverbindung.");
     } finally {
       setIsDownloadSubmitting(false);
     }
@@ -124,8 +134,8 @@ export default function App() {
 
       {/* Hero Section */}
       <Hero 
-        onDownloadClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
-        onAppointmentClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); }}
+        onDownloadClick={() => { setModalType('download'); setDownloadError(null); setIsDownloadModalOpen(true); }}
+        onAppointmentClick={() => { setModalType('appointment'); setDownloadError(null); setIsDownloadModalOpen(true); }}
       />
 
       {/* Context & Methodology Section */}
@@ -195,7 +205,7 @@ export default function App() {
       {/* Floating CTA */}
       <div className={`fixed bottom-8 right-8 z-[90] transition-all duration-500 transform ${showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
         <button
-          onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
+          onClick={() => { setModalType('download'); setDownloadError(null); setIsDownloadModalOpen(true); }}
           className="group relative flex items-center gap-3 px-6 py-4 bg-white/60 backdrop-blur-2xl border border-white/80 rounded-full shadow-2xl hover:shadow-blue-500/20 transition-all"
         >
           <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg">
@@ -213,13 +223,15 @@ export default function App() {
       <HistoricalStudyModal studyId={selectedStudy} onClose={() => setSelectedStudy(null)} />
       <DownloadForm 
         isOpen={isDownloadModalOpen} 
-        onClose={() => setIsDownloadModalOpen(false)}
+        onClose={() => { setIsDownloadModalOpen(false); setDownloadError(null); }}
         modalType={modalType}
         formData={downloadFormData}
         setFormData={setDownloadFormData}
         isSubmitting={isDownloadSubmitting}
         success={downloadSuccess}
+        error={downloadError}
         onSubmit={handleDownloadSubmit}
+        whitepaperUrl={settingsData.whitepaperPdf}
       />
     </div>
   );

@@ -15,8 +15,8 @@ const HistoricalStudyModal = ({ studyId, onClose }) => {
         <div className="p-8 pb-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white font-extrabold shadow-lg ${studyId === '2015' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
-                studyId === '2019' ? 'bg-gradient-to-br from-slate-700 to-slate-900' :
-                  'bg-gradient-to-br from-orange-400 to-orange-600'
+              studyId === '2019' ? 'bg-gradient-to-br from-slate-700 to-slate-900' :
+                'bg-gradient-to-br from-orange-400 to-orange-600'
               }`}>
               {studyId === '2026' ? <Target className="w-7 h-7" /> : studyId}
             </div>
@@ -45,22 +45,22 @@ const HistoricalStudyModal = ({ studyId, onClose }) => {
         <div className="p-8 pt-4 overflow-y-auto">
           {studyId === '2026' ? (
             <div className="space-y-12">
-              <div className="bg-blue-50/50 p-8 rounded-[32px] border border-blue-100/50">
+              <div className="bg-orange-50/50 p-8 rounded-[32px] border border-orange-100/50">
                 <h4 className="text-xl font-black text-slate-900 mb-6 uppercase tracking-tight">Die Drei-Säulen-Methodik</h4>
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="space-y-3">
-                    <div className="text-blue-600 font-black text-3xl">01</div>
-                    <h5 className="font-bold text-slate-900 underline decoration-blue-500 decoration-4 underline-offset-4">Desk Research</h5>
+                    <div className="text-orange-600 font-black text-3xl">01</div>
+                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Desk Research</h5>
                     <p className="text-sm text-slate-600 font-medium">Globale Screening asiatischer, US-amerikanischer und europäischer Trend-Plattformen.</p>
                   </div>
                   <div className="space-y-3">
-                    <div className="text-blue-600 font-black text-3xl">02</div>
-                    <h5 className="font-bold text-slate-900 underline decoration-blue-500 decoration-4 underline-offset-4">Expert Interviews</h5>
+                    <div className="text-orange-600 font-black text-3xl">02</div>
+                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Expert Interviews</h5>
                     <p className="text-sm text-slate-600 font-medium">32 Tiefeninterviews mit C-Level Executives aus Handel und Industrie (DACH Region).</p>
                   </div>
                   <div className="space-y-3">
-                    <div className="text-blue-600 font-black text-3xl">03</div>
-                    <h5 className="font-bold text-slate-900 underline decoration-blue-500 decoration-4 underline-offset-4">Synthesis</h5>
+                    <div className="text-orange-600 font-black text-3xl">03</div>
+                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Synthesis</h5>
                     <p className="text-sm text-slate-600 font-medium">Abgleich der Hypothesen mit technologischen Roadmaps und Konsumenten-Panels.</p>
                   </div>
                 </div>
@@ -79,8 +79,8 @@ const HistoricalStudyModal = ({ studyId, onClose }) => {
                     <h4 className="text-xl font-extrabold text-slate-900">Methodik</h4>
                   </div>
                   <p className="text-slate-600 leading-relaxed font-medium mb-6">
-                    {studyId === '2015' 
-                      ? "Kooperation mit der LMU München (Leitung Prof. Dr. Anton Meyer). Eine rigorose Desk-Research Analyse, bei der Trends nach Eintrittswahrscheinlichkeit und Branchenrelevanz bewertet wurden." 
+                    {studyId === '2015'
+                      ? "Kooperation mit der LMU München (Leitung Prof. Dr. Anton Meyer). Eine rigorose Desk-Research Analyse, bei der Trends nach Eintrittswahrscheinlichkeit und Branchenrelevanz bewertet wurden."
                       : "Strukturierte Expertenbefragung mit 32 Executives aus Handel und Industrie. Visualisierung der Ergebnisse in einer Matrix zur Identifikation einflussreicher Zukunftstrends."}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -93,7 +93,7 @@ const HistoricalStudyModal = ({ studyId, onClose }) => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Findings Section */}
               <div>
                 <h4 className="text-2xl font-black text-slate-900 mb-8 px-2">Die Top 3 Erkenntnisse</h4>

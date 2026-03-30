@@ -1,8 +1,12 @@
 import React from 'react';
 import { X, Check, ArrowRight, Download, Users, Smartphone, Shield, Globe } from 'lucide-react';
 
-const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSubmitting, success, onSubmit }) => {
+const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSubmitting, success, error, onSubmit, whitepaperUrl }) => {
   if (!isOpen) return null;
+
+  const handleFormDataChange = (newData) => {
+    setFormData(newData);
+  };
 
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
@@ -68,12 +72,25 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                     ? 'Der Download startet in wenigen Augenblicken automatisch. Wir haben Ihnen zudem eine Bestätigung gesendet.' 
                     : 'Ihre Anfrage wurde erfolgreich übermittelt. Wir setzen uns zeitnah mit Ihnen in Verbindung.'}
                 </p>
-                <button 
-                  onClick={onClose}
-                  className="px-12 py-4 bg-slate-900 text-white font-extrabold rounded-2xl hover:bg-slate-800 transition-all shadow-xl active:scale-95"
-                >
-                  Schließen
-                </button>
+                
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {modalType === 'download' && (
+                    <a 
+                      href={whitepaperUrl}
+                      download={whitepaperUrl.split('/').pop()}
+                      className="px-8 py-4 bg-blue-600 text-white font-extrabold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/20 active:scale-95 flex items-center gap-2"
+                    >
+                      <Download className="w-5 h-5" />
+                      Whitepaper laden
+                    </a>
+                  )}
+                  <button 
+                    onClick={onClose}
+                    className="px-12 py-4 bg-slate-900 text-white font-extrabold rounded-2xl hover:bg-slate-800 transition-all shadow-xl active:scale-95"
+                  >
+                    Schließen
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={onSubmit} className="space-y-6">
@@ -93,7 +110,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                       placeholder="Andreas Barth"
                       className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                       value={formData.name}
-                      onChange={e => setFormData({...formData, name: e.target.value})}
+                      onChange={e => handleFormDataChange({...formData, name: e.target.value})}
                     />
                   </div>
                   <div className="space-y-2">
@@ -103,7 +120,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                       placeholder="Firma GmbH"
                       className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                       value={formData.firma}
-                      onChange={e => setFormData({...formData, firma: e.target.value})}
+                      onChange={e => handleFormDataChange({...formData, firma: e.target.value})}
                     />
                   </div>
                 </div>
@@ -116,7 +133,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                     placeholder="name@firma.de"
                     className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                     value={formData.email}
-                    onChange={e => setFormData({...formData, email: e.target.value})}
+                    onChange={e => handleFormDataChange({...formData, email: e.target.value})}
                   />
                 </div>
 
@@ -127,7 +144,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                     placeholder="+49 123 456789"
                     className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                     value={formData.phone}
-                    onChange={e => setFormData({...formData, phone: e.target.value})}
+                    onChange={e => handleFormDataChange({...formData, phone: e.target.value})}
                   />
                 </div>
 
@@ -139,7 +156,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                         type="checkbox" 
                         className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-blue-600 checked:border-blue-600 active:scale-90"
                         checked={formData.dsgvo}
-                        onChange={e => setFormData({...formData, dsgvo: e.target.checked})}
+                        onChange={e => handleFormDataChange({...formData, dsgvo: e.target.checked})}
                       />
                       <Check className="absolute h-5 w-5 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none left-0.5" />
                     </div>
@@ -155,7 +172,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                         type="checkbox" 
                         className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-blue-600 checked:border-blue-600 active:scale-90"
                         checked={formData.formsubmitConsent}
-                        onChange={e => setFormData({...formData, formsubmitConsent: e.target.checked})}
+                        onChange={e => handleFormDataChange({...formData, formsubmitConsent: e.target.checked})}
                       />
                       <Check className="absolute h-5 w-5 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none left-0.5" />
                     </div>
@@ -170,7 +187,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                         type="checkbox" 
                         className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-blue-600 checked:border-blue-600 active:scale-90"
                         checked={formData.moreInfo}
-                        onChange={e => setFormData({...formData, moreInfo: e.target.checked})}
+                        onChange={e => handleFormDataChange({...formData, moreInfo: e.target.checked})}
                       />
                       <Check className="absolute h-5 w-5 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none left-0.5" />
                     </div>
@@ -181,6 +198,11 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                 </div>
 
                 <div className="pt-6">
+                  {error && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-2xl animate-in fade-in slide-in-from-top-2">
+                       <p className="text-xs text-red-600 font-bold leading-relaxed">{error}</p>
+                    </div>
+                  )}
                   <button 
                     disabled={isSubmitting}
                     className={`w-full py-5 rounded-[24px] font-black text-xl uppercase tracking-widest flex items-center justify-center gap-3 transition-all transform active:scale-[0.98] ${isSubmitting ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-2xl shadow-blue-500/40 hover:-translate-y-1'}`}
