@@ -239,7 +239,7 @@ export default function App() {
                 </div>
 
                 {/* Hover Bio Overlay - Elegant Liquid Glass Appearance */}
-                <div className="absolute inset-0 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-start items-start opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 z-20 pt-16">
+                <div className="absolute inset-0 bg-white p-8 flex flex-col justify-start items-start opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 z-20 pt-16">
                   <h4 className="text-xl font-black text-slate-900 mb-6 tracking-tight flex-shrink-0">{author.name}</h4>
                   
                   {/* Scrollable Bio with German Hyphenation */}
