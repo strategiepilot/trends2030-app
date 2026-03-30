@@ -45,6 +45,19 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Listen for modal open events from other components
+  useEffect(() => {
+    const handleOpenModal = (e) => {
+      if (e.detail && e.detail.type) {
+        setModalType(e.detail.type);
+        setDownloadError(null);
+        setIsDownloadModalOpen(true);
+      }
+    };
+    window.addEventListener('openDownloadModal', handleOpenModal);
+    return () => window.removeEventListener('openDownloadModal', handleOpenModal);
+  }, []);
+
   const tabs = ["all", "technologie", "konsum", "wettbewerb"];
   const tabNames = {
     all: "Alle Trends",

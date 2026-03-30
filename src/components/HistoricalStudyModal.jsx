@@ -1,5 +1,4 @@
-import React from 'react';
-import { X, Target } from 'lucide-react';
+import { X, Target, Users, TrendingUp, Globe, Download } from 'lucide-react';
 
 const HistoricalStudyModal = ({ studyId, onClose }) => {
   if (!studyId) return null;
@@ -47,23 +46,39 @@ const HistoricalStudyModal = ({ studyId, onClose }) => {
             <div className="space-y-12">
               <div className="bg-orange-50/50 p-8 rounded-[32px] border border-orange-100/50">
                 <h4 className="text-xl font-black text-slate-900 mb-6 uppercase tracking-tight">Die Drei-Säulen-Methodik</h4>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="space-y-3">
-                    <div className="text-orange-600 font-black text-3xl">01</div>
-                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Desk Research</h5>
-                    <p className="text-sm text-slate-600 font-medium">Globale Screening asiatischer, US-amerikanischer und europäischer Trend-Plattformen.</p>
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-orange-600">
+                      <Users className="w-6 h-6" />
+                    </div>
+                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Qualitatives Experten-Panel</h5>
+                    <p className="text-sm text-slate-600 font-medium leading-relaxed">Kompakte und tiefgreifende Branchenanalyse der neuen Dynamiken durch ein Panel aus führenden Innovationsexperten und Strategen.</p>
                   </div>
-                  <div className="space-y-3">
-                    <div className="text-orange-600 font-black text-3xl">02</div>
-                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Expert Interviews</h5>
-                    <p className="text-sm text-slate-600 font-medium">32 Tiefeninterviews mit C-Level Executives aus Handel und Industrie (DACH Region).</p>
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-orange-600">
+                      <TrendingUp className="w-6 h-6" />
+                    </div>
+                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Trend-Synthese</h5>
+                    <p className="text-sm text-slate-600 font-medium leading-relaxed">Verknüpfung rasanter technologischer Innovationen (KI, Automatisierung) mit langfristigem gesellschaftlichem Wandel.</p>
                   </div>
-                  <div className="space-y-3">
-                    <div className="text-orange-600 font-black text-3xl">03</div>
-                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Synthesis</h5>
-                    <p className="text-sm text-slate-600 font-medium">Abgleich der Hypothesen mit technologischen Roadmaps und Konsumenten-Panels.</p>
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-orange-600">
+                      <Globe className="w-6 h-6" />
+                    </div>
+                    <h5 className="font-bold text-slate-900 underline decoration-orange-500 decoration-4 underline-offset-4">Globale Marktprojektion</h5>
+                    <p className="text-sm text-slate-600 font-medium leading-relaxed">Scans internationaler Best-Practice-Modelle (Asian Blueprint) und die Ableitung ihrer Relevanz für den DACH-Raum.</p>
                   </div>
                 </div>
+              </div>
+
+              <div className="pt-6 flex justify-center">
+                <button 
+                  onClick={() => { onClose(); window.dispatchEvent(new CustomEvent('openDownloadModal', { detail: { type: 'download' } })); }}
+                  className="flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-orange-600 transition-all shadow-lg group-hover:scale-105"
+                >
+                  <Download className="w-5 h-5" />
+                  Komplette Studie 2026 jetzt downloaden
+                </button>
               </div>
             </div>
           ) : (
