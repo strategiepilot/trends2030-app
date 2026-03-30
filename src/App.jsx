@@ -10,13 +10,12 @@ import Hero from './components/Hero';
 import ContextSection from './components/ContextSection';
 import TrendCard from './components/TrendCard';
 import TrendModal from './components/TrendModal';
-import AuthorCard from './components/AuthorCard';
 import HistoricalStudyModal from './components/HistoricalStudyModal';
 import DownloadForm from './components/DownloadForm';
 
 // Utils & Icons
 import { getIcon } from './utils/lucide-map';
-import { Download } from 'lucide-react';
+import { Download, Check, X, Users, ArrowRight } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
