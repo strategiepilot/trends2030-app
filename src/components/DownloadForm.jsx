@@ -19,7 +19,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
         
         <div className="flex flex-col md:flex-row h-full">
           {/* Visual Left Side */}
-          <div className={`hidden md:flex md:w-2/5 p-12 flex-col justify-between text-white relative overflow-hidden ${modalType === 'download' ? 'bg-gradient-to-br from-blue-600 to-indigo-800' : 'bg-gradient-to-br from-slate-800 to-slate-950'}`}>
+          <div className={`hidden md:flex md:w-2/5 p-12 flex-col justify-between text-white relative overflow-hidden ${modalType === 'download' ? 'bg-gradient-to-br from-orange-600 to-red-600' : 'bg-gradient-to-br from-slate-800 to-slate-950'}`}>
             <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_20%_30%,#fff_0%,transparent_50%)]" />
             <div className="relative z-10">
               <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-8 border border-white/30">
@@ -108,7 +108,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                       required
                       type="text" 
                       placeholder="Andreas Barth"
-                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
+                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                       value={formData.name}
                       onChange={e => handleFormDataChange({...formData, name: e.target.value})}
                     />
@@ -118,7 +118,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                     <input 
                       type="text" 
                       placeholder="Firma GmbH"
-                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
+                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                       value={formData.firma}
                       onChange={e => handleFormDataChange({...formData, firma: e.target.value})}
                     />
@@ -131,7 +131,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                     required
                     type="email" 
                     placeholder="name@firma.de"
-                    className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
+                    className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                     value={formData.email}
                     onChange={e => handleFormDataChange({...formData, email: e.target.value})}
                   />
@@ -142,7 +142,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                   <input 
                     type="tel" 
                     placeholder="+49 123 456789"
-                    className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
+                    className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                     value={formData.phone}
                     onChange={e => handleFormDataChange({...formData, phone: e.target.value})}
                   />
@@ -154,7 +154,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                       <input 
                         required
                         type="checkbox" 
-                        className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-blue-600 checked:border-blue-600 active:scale-90"
+                        className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-orange-600 checked:border-orange-600 active:scale-90"
                         checked={formData.dsgvo}
                         onChange={e => handleFormDataChange({...formData, dsgvo: e.target.checked})}
                       />
@@ -170,7 +170,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                       <input 
                         required
                         type="checkbox" 
-                        className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-blue-600 checked:border-blue-600 active:scale-90"
+                        className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-orange-600 checked:border-orange-600 active:scale-90"
                         checked={formData.formsubmitConsent}
                         onChange={e => handleFormDataChange({...formData, formsubmitConsent: e.target.checked})}
                       />
@@ -185,7 +185,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                     <div className="relative flex items-center mt-1">
                       <input 
                         type="checkbox" 
-                        className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-blue-600 checked:border-blue-600 active:scale-90"
+                        className="peer h-6 w-6 cursor-pointer appearance-none rounded-lg border-2 border-slate-200 bg-white transition-all checked:bg-orange-600 checked:border-orange-600 active:scale-90"
                         checked={formData.moreInfo}
                         onChange={e => handleFormDataChange({...formData, moreInfo: e.target.checked})}
                       />
@@ -205,7 +205,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                   )}
                   <button 
                     disabled={isSubmitting}
-                    className={`w-full py-5 rounded-[24px] font-black text-xl uppercase tracking-widest flex items-center justify-center gap-3 transition-all transform active:scale-[0.98] ${isSubmitting ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-2xl shadow-blue-500/40 hover:-translate-y-1'}`}
+                    className={`w-full py-5 rounded-[24px] font-black text-xl uppercase tracking-widest flex items-center justify-center gap-3 transition-all transform active:scale-[0.98] ${isSubmitting ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-orange-600 text-white hover:bg-orange-700 hover:shadow-2xl shadow-orange-500/40 hover:-translate-y-1'}`}
                   >
                     {isSubmitting ? (
                       <div className="w-8 h-8 border-4 border-slate-400 border-t-transparent rounded-full animate-spin" />
