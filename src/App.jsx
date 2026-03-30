@@ -170,34 +170,91 @@ export default function App() {
       </section>
 
       {/* Authors Section */}
-      <section className="py-24 bg-slate-900 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <section className="py-24 px-6 bg-white/40 backdrop-blur-2xl border-t border-white/50 relative z-10" id="authors">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-black text-white mb-6 uppercase tracking-tight">Die Herausgeber</h2>
-            <p className="text-slate-400 text-lg font-medium max-w-2xl mx-auto">
+            <h2 className="text-5xl font-black text-slate-900 mb-6 uppercase tracking-tight font-outfit">Die Herausgeber</h2>
+            <p className="text-slate-500 text-lg font-medium max-w-2xl mx-auto">
               Ein interdisziplinäres Team aus Strategen, Technologie-Experten und Branchen-Insidern.
             </p>
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {authorsData.map((author, idx) => (
-              <AuthorCard key={idx} author={author} />
+            {authorsData.map((author, item) => (
+              <div key={item} className="group relative bg-white/60 border border-white p-6 rounded-[32px] flex flex-col items-center text-center shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-default min-h-[340px]">
+                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md bg-slate-50 flex-shrink-0 relative">
+                  {author.image ? (
+                    <img 
+                      src={author.image} 
+                      alt={author.name} 
+                      className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
+                        author.id === 'markus' ? 'brightness-[1.14] contrast-[1.12]' : ''
+                      }`}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-slate-400">
+                      <Users className="w-12 h-12 opacity-50" />
+                    </div>
+                  )}
+                  {/* Subtle Harmony Overlay */}
+                  <div className="absolute inset-0 bg-blue-900/5 mix-blend-multiply pointer-events-none" />
+                </div>
+                
+                <div className="mt-6 z-10 transition-opacity duration-300 group-hover:opacity-0">
+                  <h4 className="text-xl font-extrabold text-slate-900 mb-1 tracking-tight">{author.name}</h4>
+                  <div className="text-xs font-bold text-blue-600 uppercase tracking-widest">{author.role}</div>
+                </div>
+
+                {/* Hover Bio Overlay - Elegant Liquid Glass Appearance */}
+                <div className="absolute inset-0 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-center items-start opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 z-20">
+                  <div className="w-8 h-1 bg-blue-600 rounded-full mb-4" />
+                  <h4 className="text-xl font-black text-slate-900 mb-1 tracking-tight">{author.name}</h4>
+                  <div className="text-[10px] font-bold text-blue-600 mb-6 uppercase tracking-widest">{author.role}</div>
+                  <p className="text-[13px] text-slate-700 font-medium leading-relaxed text-left">
+                    {author.bio}
+                  </p>
+                  <div className="mt-6 text-[10px] font-black text-slate-400 uppercase tracking-tighter">Herausgeber Expertise</div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Footer / Partners */}
-      <footer className="py-20 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center items-center gap-12 grayscale opacity-50 hover:opacity-100 transition-opacity duration-700">
-            {settingsData.partners.map((partner, idx) => (
-              <a key={idx} href={partner.website} target="_blank" rel="noopener noreferrer">
-                <img src={partner.logo} alt={partner.name} className="h-12 w-auto object-contain" />
-              </a>
-            ))}
+      {/* Footer */}
+      <footer className="relative z-10 mt-0 py-24 px-6 border-t border-slate-200 bg-white/30 backdrop-blur-xl">
+        <div className="max-w-4xl mx-auto text-center space-y-10">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight">
+            Bereit für die Zukunft?
+          </h2>
+          <p className="text-2xl text-slate-600 font-medium max-w-2xl mx-auto">
+            Die Zukunft beginnt jetzt. Nutzen Sie exklusive Insights, <br className="hidden lg:block" />um das Feld anzuführen.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button 
+              onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-5 bg-blue-600 text-white font-extrabold rounded-3xl hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-xl"
+            >
+              <Download className="w-6 h-6" />
+              Studie 2026 sichern
+            </button>
+            <button
+              onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); }}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-5 bg-white/60 backdrop-blur-xl border border-white text-slate-900 font-extrabold rounded-3xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all text-xl"
+            >
+              <Users className="w-6 h-6" />
+              Termin mit Experten
+            </button>
           </div>
-          <div className="mt-20 pt-10 border-t border-slate-50 text-center text-slate-400 text-sm font-bold uppercase tracking-widest">
-            &copy; 2026 Retail Trends 2030 • Strategiepilot & Partners
+
+          <div className="pt-20 text-sm font-semibold flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500">
+            <div>
+              © {new Date().getFullYear()} {settingsData.partners[0].name} and {settingsData.partners[1].name}
+            </div>
+            <div className="flex gap-6">
+              <a href={settingsData.impressumUrl} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">Impressum</a>
+              <a href={settingsData.datenschutzUrl} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">Datenschutz</a>
+            </div>
           </div>
         </div>
       </footer>
