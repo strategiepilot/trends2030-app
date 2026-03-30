@@ -3,8 +3,8 @@
   "formSubmitEndpoint": "https://formsubmit.co/ajax/abarth@bavaria-group.com",
   "formTemplate": "table",
   "whitepaperPdf": "/Retailtrends2030_WhitepaperDownload.pdf",
-  "impressumUrl": "https://www.bavaria-consulting.com/impressum",
-  "datenschutzUrl": "https://www.bavaria-consulting.com/datenschutz",
+  "impressumUrl": "https://www.bavaria-consulting.com/impressum.php",
+  "datenschutzUrl": "https://www.bavaria-consulting.com/datenschutz.php",
   "partners": [
     {
       "id": "bavaria",
