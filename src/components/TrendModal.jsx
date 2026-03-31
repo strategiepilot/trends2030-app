@@ -60,9 +60,13 @@ const TrendModal = ({ trend, onClose }) => {
               </p>
             </div>
             <div className="w-full lg:w-1/3">
-              <div className="relative rounded-[32px] overflow-hidden shadow-2xl border-4 border-white/50">
-                <img src={trend.image} alt={trend.title} className="w-full h-auto object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
+              <div className="group relative">
+                <div className="relative rounded-[32px] overflow-hidden shadow-2xl border-4 border-white/50 transition-all duration-700 transform rotate-[-2deg] group-hover:rotate-0 group-hover:scale-105 group-hover:shadow-blue-500/20">
+                  <img src={trend.image} alt={trend.title} className="w-full h-auto object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
+                </div>
+                {/* Decorative glow */}
+                <div className="absolute -inset-4 bg-blue-500/10 rounded-[40px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
               </div>
             </div>
           </section>
@@ -105,7 +109,7 @@ const TrendModal = ({ trend, onClose }) => {
             onClick={onClose}
             className="px-10 py-4 bg-slate-900 text-white font-extrabold rounded-2xl hover:bg-slate-800 transition-all shadow-lg active:scale-95"
           >
-            Verstanden
+            OK
           </button>
         </div>
       </div>
