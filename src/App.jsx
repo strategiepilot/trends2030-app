@@ -16,7 +16,7 @@ import DownloadForm from './components/DownloadForm';
 
 // Utils & Icons
 import { getIcon } from './utils/lucide-map';
-import { Download } from 'lucide-react';
+import { Download, Users } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
