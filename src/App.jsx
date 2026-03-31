@@ -164,15 +164,39 @@ export default function App() {
         </div>
       </section>
 
+      {/* Partners Section */}
+      <section className="py-24 px-6 bg-slate-50/50 relative z-10" id="partners">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight font-outfit uppercase">Kooperationspartner</h2>
+            <p className="text-xl text-slate-500 font-medium mt-4">Kollaboration von Strategie-Beratung und Trend-Innovation.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {settingsData.partners.map((partner) => (
+              <div key={partner.id} className="bg-white/80 backdrop-blur-xl border border-white/60 p-10 rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300">
+                <div className="w-full h-16 flex items-center mb-8">
+                  <img src={partner.logo} alt={partner.name} className="h-full object-contain" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">{partner.name}</h3>
+                <p className="text-lg text-slate-600 leading-relaxed font-medium">
+                  {partner.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Authors Section */}
-      <section className="py-24 bg-slate-900 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <section className="py-24 px-6 bg-white border-t border-slate-100 relative z-10" id="authors">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-black text-white mb-6 uppercase tracking-tight">Die Herausgeber</h2>
-            <p className="text-slate-400 text-lg font-medium max-w-2xl mx-auto">
+            <h2 className="text-5xl font-black text-slate-900 mb-6 uppercase tracking-tight font-outfit">Die Herausgeber</h2>
+            <p className="text-slate-500 text-lg font-medium max-w-2xl mx-auto">
               Ein interdisziplinäres Team aus Strategen, Technologie-Experten und Branchen-Insidern.
             </p>
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {authorsData.map((author, idx) => (
               <AuthorCard key={idx} author={author} />
@@ -181,18 +205,44 @@ export default function App() {
         </div>
       </section>
 
-      {/* Footer / Partners */}
-      <footer className="py-20 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center items-center gap-12 grayscale opacity-50 hover:opacity-100 transition-opacity duration-700">
-            {settingsData.partners.map((partner, idx) => (
-              <a key={idx} href={partner.website} target="_blank" rel="noopener noreferrer">
-                <img src={partner.logo} alt={partner.name} className="h-12 w-auto object-contain" />
-              </a>
-            ))}
+      {/* CTA Section */}
+      <section className="py-24 px-6 bg-blue-600 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+        <div className="max-w-4xl mx-auto text-center relative z-10 space-y-10">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight">
+            Bereit für die Zukunft?
+          </h2>
+          <p className="text-2xl text-blue-100 font-medium max-w-2xl mx-auto">
+            Die Zukunft beginnt jetzt. Nutzen Sie exklusive Insights, um das Feld anzuführen.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <button 
+              onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
+              className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 bg-white text-blue-600 font-black rounded-3xl hover:bg-blue-50 hover:shadow-2xl hover:-translate-y-1 transition-all text-xl"
+            >
+              <Download className="w-6 h-6" />
+              Studie 2026 sichern
+            </button>
+            <button
+              onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
+              className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 bg-blue-700/50 backdrop-blur-xl border border-blue-400/30 text-white font-black rounded-3xl hover:bg-blue-700/70 hover:shadow-xl hover:-translate-y-1 transition-all text-xl"
+            >
+              <Users className="w-6 h-6" />
+              Termin mit Experten
+            </button>
           </div>
-          <div className="mt-20 pt-10 border-t border-slate-50 text-center text-slate-400 text-sm font-bold uppercase tracking-widest">
-            &copy; 2026 Retail Trends 2030 • Strategiepilot & Partners
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-6 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-sm font-bold text-slate-400">
+          <div className="uppercase tracking-widest">
+            © {new Date().getFullYear()} Bavaria Consulting Group & Space and Lemon Innovations
+          </div>
+          <div className="flex gap-8 uppercase tracking-widest">
+            <a href={settingsData.impressumUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">Impressum</a>
+            <a href={settingsData.datenschutzUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">Datenschutz</a>
           </div>
         </div>
       </footer>
