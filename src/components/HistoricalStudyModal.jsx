@@ -153,9 +153,9 @@ const HistoricalStudyModal = ({ studyId, onClose }) => {
         <div className="p-8 border-t border-slate-100 bg-slate-50/50 flex justify-end">
           <button
             onClick={onClose}
-            className="px-6 py-2 bg-white border border-slate-200 text-slate-600 font-bold rounded-xl hover:bg-slate-50 transition-colors"
+            className="px-8 py-3 bg-slate-900 text-white font-extrabold rounded-2xl hover:bg-slate-800 transition-all shadow-lg active:scale-95"
           >
-            Schließen
+            OK
           </button>
         </div>
       </div>
