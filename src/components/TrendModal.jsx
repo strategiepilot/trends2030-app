@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Target, Check } from 'lucide-react';
+import { X, Target, Check, Database } from 'lucide-react';
 import { getIcon } from '../utils/lucide-map';
 
 const getIconGlassClasses = (colorName) => {

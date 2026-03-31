@@ -10,14 +10,13 @@ import Hero from './components/Hero';
 import ContextSection from './components/ContextSection';
 import TrendCard from './components/TrendCard';
 import TrendModal from './components/TrendModal';
+import AuthorCard from './components/AuthorCard';
 import HistoricalStudyModal from './components/HistoricalStudyModal';
 import DownloadForm from './components/DownloadForm';
-import PartnersSection from './components/PartnersSection';
-import AuthorsSection from './components/AuthorsSection';
 
 // Utils & Icons
 import { getIcon } from './utils/lucide-map';
-import { Download, Check, X, Users, ArrowRight } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
@@ -47,19 +46,6 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Listen for modal open events from other components
-  useEffect(() => {
-    const handleOpenModal = (e) => {
-      if (e.detail && e.detail.type) {
-        setModalType(e.detail.type);
-        setDownloadError(null);
-        setIsDownloadModalOpen(true);
-      }
-    };
-    window.addEventListener('openDownloadModal', handleOpenModal);
-    return () => window.removeEventListener('openDownloadModal', handleOpenModal);
-  }, []);
-
   const tabs = ["all", "technologie", "konsum", "wettbewerb"];
   const tabNames = {
     all: "Alle Trends",
@@ -70,11 +56,12 @@ export default function App() {
 
   const handleDownloadSubmit = async (e) => {
     e.preventDefault();
+    setDownloadError(null);
     
     // Security: Basic Email Validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(downloadFormData.email)) {
-      alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+      setDownloadError("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
       return;
     }
 
@@ -104,30 +91,24 @@ export default function App() {
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       });
-
-      const result = await response.json();
-
-      if (response.ok && result.success === "true" || result.success === true) {
-        setDownloadSuccess(true);
-        
-        if (modalType === 'download') {
-          setTimeout(() => {
-            const link = document.createElement('a');
-            link.href = settingsData.whitepaperPdf;
-            link.download = settingsData.whitepaperPdf.split('/').pop();
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          }, 500);
-        }
-      } else {
-        const errorMsg = result.message || "Es gab ein Problem beim Senden. Bitte versuchen Sie es später erneut.";
-        console.error("FormSubmit Error:", result);
-        setDownloadError(errorMsg);
+      
+      if (!response.ok) throw new Error("Transmission failed");
+      
+      setDownloadSuccess(true);
+      
+      if (modalType === 'download') {
+        setTimeout(() => {
+          const link = document.createElement('a');
+          link.href = settingsData.whitepaperPdf;
+          link.download = settingsData.whitepaperPdf.split('/').pop();
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }, 500);
       }
     } catch (error) {
       console.error("Form transmission issue:", error);
-      setDownloadError("Verbindungsproblem. Bitte prüfen Sie Ihre Internetverbindung.");
+      setDownloadError("Es gab ein Problem beim Senden. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.");
     } finally {
       setIsDownloadSubmitting(false);
     }
@@ -148,8 +129,8 @@ export default function App() {
 
       {/* Hero Section */}
       <Hero 
-        onDownloadClick={() => { setModalType('download'); setDownloadError(null); setIsDownloadModalOpen(true); }}
-        onAppointmentClick={() => { setModalType('appointment'); setDownloadError(null); setIsDownloadModalOpen(true); }}
+        onDownloadClick={() => { setModalType('download'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
+        onAppointmentClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
       />
 
       {/* Context & Methodology Section */}
@@ -183,70 +164,44 @@ export default function App() {
         </div>
       </section>
 
-      {/* Partners & Authors Sections - Modularized */}
-      <PartnersSection partners={settingsData.partners} />
-      <AuthorsSection authors={authorsData} />
-
-
-      {/* Footer */}
-      <footer className="relative z-10 mt-0 py-24 px-6 border-t border-slate-200 bg-white/30 backdrop-blur-xl">
-        <div className="max-w-4xl mx-auto text-center space-y-10">
-          <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight">
-            Bereit für die Zukunft?
-          </h2>
-          <p className="text-2xl text-slate-600 font-medium max-w-2xl mx-auto">
-            Die Zukunft beginnt jetzt. Nutzen Sie exklusive Insights, <br className="hidden lg:block" />um das Feld anzuführen.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button 
-              onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-5 bg-blue-600 text-white font-extrabold rounded-3xl hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1 transition-all text-xl"
-            >
-              <Download className="w-6 h-6" />
-              Studie 2026 sichern
-            </button>
-            <button
-              onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-5 bg-white/60 backdrop-blur-xl border border-white text-slate-900 font-extrabold rounded-3xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all text-xl"
-            >
-              <Users className="w-6 h-6" />
-              Termin mit Experten
-            </button>
+      {/* Authors Section */}
+      <section className="py-24 bg-slate-900 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl font-black text-white mb-6 uppercase tracking-tight">Die Herausgeber</h2>
+            <p className="text-slate-400 text-lg font-medium max-w-2xl mx-auto">
+              Ein interdisziplinäres Team aus Strategen, Technologie-Experten und Branchen-Insidern.
+            </p>
           </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {authorsData.map((author, idx) => (
+              <AuthorCard key={idx} author={author} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="pt-20 text-sm font-semibold flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500">
-            <div>
-              © {new Date().getFullYear()} {settingsData.partners[0].name} and {settingsData.partners[1].name}
-            </div>
-            <div className="flex gap-6">
-              <a href={settingsData.impressumUrl} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">Impressum</a>
-              <a href={settingsData.datenschutzUrl} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">Datenschutz</a>
-            </div>
+      {/* Footer / Partners */}
+      <footer className="py-20 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-wrap justify-center items-center gap-12 grayscale opacity-50 hover:opacity-100 transition-opacity duration-700">
+            {settingsData.partners.map((partner, idx) => (
+              <a key={idx} href={partner.website} target="_blank" rel="noopener noreferrer">
+                <img src={partner.logo} alt={partner.name} className="h-12 w-auto object-contain" />
+              </a>
+            ))}
+          </div>
+          <div className="mt-20 pt-10 border-t border-slate-50 text-center text-slate-400 text-sm font-bold uppercase tracking-widest">
+            &copy; 2026 Retail Trends 2030 • Strategiepilot & Partners
           </div>
         </div>
       </footer>
 
-      {/* Floating CTA Overlay */}
-      <div
-        className={`fixed bottom-8 right-8 z-[90] flex flex-col items-end gap-3 transition-all duration-500 transform ${
-          showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
-        }`}
-      >
-        {/* Appointment Bubble (Smaller) */}
+      {/* Floating CTA */}
+      <div className={`fixed bottom-8 right-8 z-[90] transition-all duration-500 transform ${showFloatingCTA ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
         <button
-          onClick={() => { setModalType('appointment'); setDownloadError(null); setIsDownloadModalOpen(true); }}
-          className="group relative flex items-center gap-3 px-5 py-3 bg-white/80 backdrop-blur-xl border border-white/80 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-        >
-          <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
-            <Users className="w-4 h-4" />
-          </div>
-          <span className="text-sm font-bold text-slate-900">Expert-Talk</span>
-        </button>
-
-        {/* Download Bubble */}
-        <button
-          onClick={() => { setModalType('download'); setDownloadError(null); setIsDownloadModalOpen(true); }}
-          className="group relative flex items-center gap-3 px-6 py-4 bg-white/60 backdrop-blur-2xl border border-white/80 rounded-full shadow-2xl hover:shadow-blue-500/20 transition-all hover:-translate-y-1"
+          onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
+          className="group relative flex items-center gap-3 px-6 py-4 bg-white/60 backdrop-blur-2xl border border-white/80 rounded-full shadow-2xl hover:shadow-blue-500/20 transition-all"
         >
           <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg">
             <Download className="w-5 h-5" />
@@ -263,7 +218,7 @@ export default function App() {
       <HistoricalStudyModal studyId={selectedStudy} onClose={() => setSelectedStudy(null)} />
       <DownloadForm 
         isOpen={isDownloadModalOpen} 
-        onClose={() => { setIsDownloadModalOpen(false); setDownloadError(null); }}
+        onClose={() => setIsDownloadModalOpen(false)}
         modalType={modalType}
         formData={downloadFormData}
         setFormData={setDownloadFormData}
