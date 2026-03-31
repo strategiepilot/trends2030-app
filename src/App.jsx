@@ -80,7 +80,7 @@ export default function App() {
         ? "Neuer Whitepaper Download: " + downloadFormData.name
         : "Anfrage Experten-Termin: " + downloadFormData.name,
       "_template": settingsData.formTemplate,
-      "_captcha": "false",
+      "_captcha": "true",
       "_honey": "",
       "_replyto": downloadFormData.email
     };
@@ -107,7 +107,9 @@ export default function App() {
         }, 500);
       }
     } catch (error) {
-      console.error("Form transmission issue:", error);
+      if (import.meta.env.DEV) {
+        console.error("Form transmission issue:", error);
+      }
       setDownloadError("Es gab ein Problem beim Senden. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.");
     } finally {
       setIsDownloadSubmitting(false);
