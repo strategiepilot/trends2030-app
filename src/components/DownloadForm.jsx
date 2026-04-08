@@ -31,7 +31,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
               <p className="text-white/80 font-medium leading-relaxed mb-8">
                 {modalType === 'download' 
                   ? 'Vertiefen Sie Ihr Verständnis der zehn zentralen Trends für 2030. Wir laden Sie ein, die Potenziale und den Impact dieser Entwicklungen für Ihr eigenes Geschäftsmodell in Ruhe zu explorieren.' 
-                  : 'Sprechen Sie direkt mit unseren Experten über Ihre individuelle KI-Roadmap und Transformationsstrategie.'}
+                  : 'Lassen Sie uns gemeinsam die zehn zentralen Trends und ihre spezifischen Implikationen für Ihr individuelles Geschäftsmodell diskutieren. In einem persönlichen Expert-Talk identifizieren wir die Potenziale für Ihre Zukunft.'}
               </p>
               
             </div>
