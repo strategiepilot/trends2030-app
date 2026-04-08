@@ -30,21 +30,10 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
               </h3>
               <p className="text-white/80 font-medium leading-relaxed mb-8">
                 {modalType === 'download' 
-                  ? 'Sichern Sie sich den exklusiven Retail-Trends Report und transformieren Sie Ihr Business-Modell.' 
+                  ? 'Vertiefen Sie Ihr Verständnis der zehn zentralen Trends für 2030. Wir laden Sie ein, die Potenziale und den Impact dieser Entwicklungen für Ihr eigenes Geschäftsmodell in Ruhe zu explorieren.' 
                   : 'Sprechen Sie direkt mit unseren Experten über Ihre individuelle KI-Roadmap und Transformationsstrategie.'}
               </p>
               
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-sm font-bold bg-white/10 p-3 rounded-2xl border border-white/20">
-                  <Smartphone className="w-5 h-5" /> 10 Kerntrends 2030
-                </div>
-                <div className="flex items-center gap-3 text-sm font-bold bg-white/10 p-3 rounded-2xl border border-white/20">
-                  <Shield className="w-5 h-5" /> KI Operating Systems
-                </div>
-                <div className="flex items-center gap-3 text-sm font-bold bg-white/10 p-3 rounded-2xl border border-white/20">
-                  <Globe className="w-5 h-5" /> Internationale Blueprints
-                </div>
-              </div>
             </div>
             
             <div className="relative z-10 pt-8 border-t border-white/20">
@@ -107,7 +96,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                     <input 
                       required
                       type="text" 
-                      placeholder="Andreas Barth"
+                      placeholder="Vorname Nachname"
                       className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                       value={formData.name}
                       onChange={e => handleFormDataChange({...formData, name: e.target.value})}
@@ -117,7 +106,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Unternehmen</label>
                     <input 
                       type="text" 
-                      placeholder="Firma GmbH"
+                      placeholder="Firma"
                       className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition-all font-bold text-slate-900"
                       value={formData.firma}
                       onChange={e => handleFormDataChange({...formData, firma: e.target.value})}
