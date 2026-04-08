@@ -17,7 +17,9 @@ import {
   Users,
   Search,
   Check,
-  ChevronRight
+  ChevronRight,
+  Store,
+  Factory
 } from 'lucide-react';
 
 const iconMap = {
@@ -38,7 +40,9 @@ const iconMap = {
   Users,
   Search,
   Check,
-  ChevronRight
+  ChevronRight,
+  Store,
+  Factory
 };
 
 export const getIcon = (name, props = {}) => {

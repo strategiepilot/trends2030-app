@@ -46,6 +46,13 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const openDownloadModal = (type = 'download') => {
+    setModalType(type);
+    setIsDownloadModalOpen(true);
+    setDownloadSuccess(false);
+    setDownloadError(null);
+  };
+
   const tabs = ["all", "technologie", "konsum", "wettbewerb"];
   const tabNames = {
     all: "Alle Trends",
@@ -131,8 +138,8 @@ export default function App() {
 
       {/* Hero Section */}
       <Hero 
-        onDownloadClick={() => { setModalType('download'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
-        onAppointmentClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
+        onDownloadClick={() => openDownloadModal('download')}
+        onAppointmentClick={() => openDownloadModal('appointment')}
       />
 
       {/* Context & Methodology Section */}
@@ -219,14 +226,14 @@ export default function App() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <button 
-              onClick={() => { setModalType('download'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
+              onClick={() => openDownloadModal('download')}
               className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 bg-white text-blue-600 font-black rounded-3xl hover:bg-blue-50 hover:shadow-2xl hover:-translate-y-1 transition-all text-xl"
             >
               <Download className="w-6 h-6" />
               Studie 2026 sichern
             </button>
             <button
-              onClick={() => { setModalType('appointment'); setIsDownloadModalOpen(true); setDownloadSuccess(false); setDownloadError(null); }}
+              onClick={() => openDownloadModal('appointment')}
               className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 bg-blue-700/50 backdrop-blur-xl border border-blue-400/30 text-white font-black rounded-3xl hover:bg-blue-700/70 hover:shadow-xl hover:-translate-y-1 transition-all text-xl"
             >
               <Users className="w-6 h-6" />
@@ -254,7 +261,7 @@ export default function App() {
         
         {/* Appointment Bubble (Smaller) */}
         <button
-          onClick={() => { setModalType('appointment'); setDownloadError(null); setIsDownloadModalOpen(true); setDownloadSuccess(false); }}
+          onClick={() => openDownloadModal('appointment')}
           className="group relative flex items-center gap-3 px-5 py-3 bg-white/80 backdrop-blur-xl border border-white/80 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
         >
           <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
@@ -265,7 +272,7 @@ export default function App() {
 
         {/* Download Bubble */}
         <button
-          onClick={() => { setModalType('download'); setDownloadError(null); setIsDownloadModalOpen(true); setDownloadSuccess(false); }}
+          onClick={() => openDownloadModal('download')}
           className="group relative flex items-center gap-3 px-6 py-4 bg-white/60 backdrop-blur-2xl border border-white/80 rounded-full shadow-2xl hover:shadow-blue-500/20 transition-all hover:-translate-y-1"
         >
           <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg">
@@ -280,7 +287,7 @@ export default function App() {
 
       {/* Modals */}
       <TrendModal trend={selectedTrend} onClose={() => setSelectedTrend(null)} />
-      <HistoricalStudyModal studyId={selectedStudy} onClose={() => setSelectedStudy(null)} />
+      <HistoricalStudyModal studyId={selectedStudy} onClose={() => setSelectedStudy(null)} onDownloadClick={() => openDownloadModal('download')} />
       <DownloadForm 
         isOpen={isDownloadModalOpen} 
         onClose={() => setIsDownloadModalOpen(false)}

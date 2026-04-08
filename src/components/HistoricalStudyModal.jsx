@@ -1,6 +1,6 @@
 import { X, Target, Users, TrendingUp, Globe, Download } from 'lucide-react';
 
-const HistoricalStudyModal = ({ studyId, onClose }) => {
+const HistoricalStudyModal = ({ studyId, onClose, onDownloadClick }) => {
   if (!studyId) return null;
 
   return (
@@ -73,7 +73,7 @@ const HistoricalStudyModal = ({ studyId, onClose }) => {
 
               <div className="pt-6 flex justify-center">
                 <button 
-                  onClick={() => { onClose(); window.dispatchEvent(new CustomEvent('openDownloadModal', { detail: { type: 'download' } })); }}
+                  onClick={() => { onClose(); onDownloadClick(); }}
                   className="flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-orange-600 transition-all shadow-lg group-hover:scale-105"
                 >
                   <Download className="w-5 h-5" />

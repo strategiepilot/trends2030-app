@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Target, Check, Database } from 'lucide-react';
+import { X, Target, Check, Database, Store, Factory } from 'lucide-react';
 import { getIcon } from '../utils/lucide-map';
 
 const getIconGlassClasses = (colorName) => {
@@ -53,7 +53,7 @@ const TrendModal = ({ trend, onClose }) => {
             <div className="flex-1">
               <h4 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-4">
                 <span className={`w-3 h-8 rounded-full shadow-sm ${trend.color === 'blue' ? 'bg-blue-500' : trend.color === 'emerald' ? 'bg-emerald-500' : 'bg-orange-500'}`} />
-                Der Kern der Transformation
+                {trend.subHeadline}
               </h4>
               <p className="text-xl text-slate-700 leading-relaxed font-medium">
                 {trend.description}
@@ -75,15 +75,15 @@ const TrendModal = ({ trend, onClose }) => {
           <section className="grid md:grid-cols-2 gap-8">
             <div className="p-8 bg-blue-50/50 rounded-[32px] border border-blue-100 flex flex-col gap-6">
               <div className="flex items-center gap-4 text-blue-800">
-                <Target className="w-8 h-8" />
-                <h5 className="text-xl font-extrabold uppercase tracking-tight">Focus: Retail</h5>
+                <Store className="w-8 h-8" />
+                <h5 className="text-xl font-extrabold uppercase tracking-tight">Handel</h5>
               </div>
               <p className="text-slate-700 font-medium leading-relaxed">{trend.retail}</p>
             </div>
             <div className="p-8 bg-emerald-50/50 rounded-[32px] border border-emerald-100 flex flex-col gap-6">
               <div className="flex items-center gap-4 text-emerald-800">
-                <Database className="w-8 h-8" />
-                <h5 className="text-xl font-extrabold uppercase tracking-tight">Focus: Manufacturer</h5>
+                <Factory className="w-8 h-8" />
+                <h5 className="text-xl font-extrabold uppercase tracking-tight">Hersteller</h5>
               </div>
               <p className="text-slate-700 font-medium leading-relaxed">{trend.manufacturer}</p>
             </div>
