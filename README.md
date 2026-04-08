@@ -86,6 +86,7 @@ Alle inhaltlichen Änderungen erfolgen **ausschließlich über JSON-Dateien**. K
   "color": "blue",                   // "blue" | "emerald" | "orange"
   "iconName": "Database",            // Icon-Name aus lucide-react (siehe lucide-map.jsx)
   "image": "/Visuals/grafik_t1.jpg", // Pfad relativ zu /public
+  "subHeadline": "...",              // Dynamische Headline für das Modal
   "title": "...",                    // Haupttitel auf der Kachel
   "front": "...",                    // Kurzbeschreibung auf der Kachel (Vorderseite)
   "description": "...",              // Langer Fließtext im Modal
@@ -204,4 +205,4 @@ Das Lead-Gen-Formular nutzt den Drittanbieter-Service [FormSubmit.co](https://fo
 
 ---
 
-*Zuletzt aktualisiert: März 2026 | Maintainer: Bavaria Consulting Group*
+*Zuletzt aktualisiert: April 2026 | Maintainer: Bavaria Consulting Group*
