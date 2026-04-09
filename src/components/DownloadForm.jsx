@@ -58,7 +58,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                 <h3 className="text-3xl font-black text-slate-900 mb-4 uppercase leading-none">Vielen Dank!</h3>
                 <p className="text-slate-600 text-lg font-medium max-w-sm mb-10">
                   {modalType === 'download' 
-                    ? 'Der Download startet in wenigen Augenblicken automatisch. Wir haben Ihnen zudem eine Bestätigung gesendet.' 
+                    ? 'Der Download startet in wenigen Augenblicken automatisch.' 
                     : 'Ihre Anfrage wurde erfolgreich übermittelt. Wir setzen uns zeitnah mit Ihnen in Verbindung.'}
                 </p>
                 
