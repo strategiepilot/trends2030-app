@@ -20,7 +20,7 @@ const Hero = ({ onDownloadClick, onAppointmentClick }) => {
 
             <h1 className="flex flex-col mb-12">
               <span className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tighter block uppercase">
-                Die Transformation der <br />
+                Die Neuerfindung der <br />
                 <span className="text-blue-600 text-outline-white">Wertschöpfungskette</span>
               </span>
             </h1>
