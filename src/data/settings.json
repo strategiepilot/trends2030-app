@@ -1,6 +1,6 @@
 {
   "contactEmail": "abarth@bavaria-group.com",
-  "formSubmitEndpoint": "https://formsubmit.co/ajax/abarth@bavaria-group.com",
+  "formSubmitEndpoint": "https://api.web3forms.com/submit",
   "formTemplate": "table",
   "whitepaperPdf": "/Retailtrends2030_WhitepaperDownload.pdf",
   "impressumUrl": "https://www.bavaria-consulting.com/impressum.php",

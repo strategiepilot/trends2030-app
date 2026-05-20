@@ -14,14 +14,24 @@ Die App ist eine statische Single-Page-Application (SPA) auf Basis von React und
 
 ---
 
-## 2. FormSubmit Aktivierung (Kritischer Schritt!)
+## 2. Web3Forms Einrichtung & Umgebungsvariablen (Kritischer Schritt!)
 
-Das Lead-Gen-Formular nutzt den Dienst **FormSubmit.co**. Sobald die Seite auf der finalen Domain (z.B. `ihre-domain.de`) live ist, muss der Dienst einmalig für diese Domain aktiviert werden:
+Das Lead-Gen-Formular nutzt den Dienst **Web3Forms**. Zur Absicherung der Zugangsdaten wird der API-Access-Key über eine Umgebungsvariable geladen.
 
-1.  **Test-Absendung**: Rufen Sie die Live-Seite auf und senden Sie das Download-Formular einmal mit Testdaten ab.
-2.  **Aktivierungs-E-Mail**: Der Empfänger (siehe `settings.json` -> `contactEmail`) erhält sofort eine E-Mail von FormSubmit mit dem Betreff **"Action Required: Confirm your FormSubmit site"**.
-3.  **Bestätigung**: Klicken Sie in dieser E-Mail auf den Button **"Activate Form"**.
-4.  **Fertig**: Erst nach diesem Klick werden alle weiteren Formular-Eingaben an den Empfänger weitergeleitet.
+1. **Access Key besorgen**:
+   - Gehen Sie auf [web3forms.com](https://web3forms.com/).
+   - Geben Sie die gewünschte Ziel-E-Mail-Adresse für den Empfang der Leads an.
+   - Sie erhalten sofort Ihren persönlichen Access Key (z. B. `967af52e-f6db-4b2b-9068-f316ec95e32e`) per E-Mail.
+
+2. **Umgebungsvariable einrichten**:
+   - **Lokal**: Erstellen Sie eine `.env`-Datei im Stammverzeichnis (siehe `.env.example`) und tragen Sie den Key dort ein:
+     ```env
+     VITE_WEB3FORMS_ACCESS_KEY=ihr_web3forms_access_key
+     ```
+   - **Produktion (Vercel)**: Öffnen Sie Ihr Vercel-Dashboard, navigieren Sie zu den **Settings -> Environment Variables** Ihres Projekts, und fügen Sie eine neue Variable hinzu:
+     - Name: `VITE_WEB3FORMS_ACCESS_KEY`
+     - Value: `[Ihr Web3Forms Access Key]`
+   - Nach dem Speichern wird der Key bei jedem automatischen Push auf den `main`-Branch automatisch in das Production-Bundle injiziert.
 
 ---
 
@@ -32,7 +42,7 @@ Falls die Empfänger-E-Mail-Adresse oder andere statische Pfade geändert werden
 - **Datei**: `src/data/settings.json` (im Source-Paket editieren und neu builden)
 - **Felder**:
     - `contactEmail`: Angezeigte E-Mail-Adresse.
-    - `formSubmitEndpoint`: Der AJAX-Endpunkt für FormSubmit.
+    - `formSubmitEndpoint`: Der AJAX-Endpunkt für Web3Forms (standardmäßig "https://api.web3forms.com/submit").
 
 ---
 

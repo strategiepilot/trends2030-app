@@ -74,22 +74,24 @@ export default function App() {
 
     setIsDownloadSubmitting(true);
 
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY";
+
     const payload = {
+      access_key: accessKey,
+      subject: modalType === 'download'
+        ? "Neuer Whitepaper Download: " + downloadFormData.name
+        : "Anfrage Experten-Termin: " + downloadFormData.name,
+      from_name: "Retail Trends 2030",
+      replyto: downloadFormData.email,
+      botcheck: "",
       Type: modalType === 'download' ? 'Whitepaper Download' : 'Experten-Termin Anfrage',
       Name: downloadFormData.name,
       Firma: downloadFormData.firma,
       Email: downloadFormData.email,
       Telefon: downloadFormData.phone || 'Nicht angegeben',
       "Datenschutz akzeptiert": downloadFormData.dsgvo ? 'Ja' : 'Nein',
-      "Drittanbieter (FormSubmit) akzeptiert": downloadFormData.formsubmitConsent ? 'Ja' : 'Nein',
-      "Mehr Infos gewünscht (Opt-In)": downloadFormData.moreInfo ? 'Ja' : 'Nein',
-      "_subject": modalType === 'download'
-        ? "Neuer Whitepaper Download: " + downloadFormData.name
-        : "Anfrage Experten-Termin: " + downloadFormData.name,
-      "_template": settingsData.formTemplate,
-      "_captcha": "true",
-      "_honey": "",
-      "_replyto": downloadFormData.email
+      "Drittanbieter (Web3Forms) akzeptiert": downloadFormData.formsubmitConsent ? 'Ja' : 'Nein',
+      "Mehr Infos gewünscht (Opt-In)": downloadFormData.moreInfo ? 'Ja' : 'Nein'
     };
 
     try {

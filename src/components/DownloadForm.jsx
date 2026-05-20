@@ -166,7 +166,7 @@ const DownloadForm = ({ isOpen, onClose, modalType, formData, setFormData, isSub
                       <Check className="absolute h-5 w-5 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none left-0.5" />
                     </div>
                     <span className="text-xs text-slate-500 font-bold leading-snug group-hover:text-slate-700 transition-colors">
-                      Ich bin mit der Nutzung des Drittanbieters FormSubmit für die technische Übertragung meiner Formulardaten einverstanden.*
+                      Ich bin mit der Nutzung des Drittanbieters Web3Forms für die technische Übertragung meiner Formulardaten einverstanden.*
                     </span>
                   </label>
 
